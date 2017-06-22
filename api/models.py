@@ -44,9 +44,11 @@ class PlotAmendment(model.Model):
     amendment_type
     coordinates
     supplier
+    weeds
 
 class PlotAmendmentHistory(model.Model):
     pass
+    treated
 
 class Supplier(model.Model): #buyer
     name
