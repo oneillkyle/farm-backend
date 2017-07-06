@@ -13,8 +13,19 @@ class Farm(models.Model):
 
 
 class FarmBudget(models.Model):
-    amount
-    year
+    farm = models.ForeignKey('api.farm')
+    amount = models.DecimalField(max_places=10, decimal_places=2)
+    start_date = models.DateField()
+    end_date = models.DateField()
+
+    def __unicode__(self):
+        return "Farm Budget For {0} - {1}.".format(self.start_date, self.end_date)
+
+    class Meta:
+        db_table = 'farm_budget'
+        managed = True
+        verbose_name = 'Farm Budget'
+
 
 class FarmLayout(models.Model):
     farm = models.OneToOneField('api.farm', related_name='layout')
@@ -46,9 +57,11 @@ class PlotAmendment(model.Model):
     supplier
     weeds
 
+
 class PlotAmendmentHistory(model.Model):
     pass
     treated
+
 
 class Supplier(model.Model): #buyer
     name
@@ -61,7 +74,6 @@ class Crop(models.Model): # for a swath/multiple plants
     plot_length_coordinate = models.IntegerField()
     # date_planted = models.DateField()
     # days_in_plot = models.IntegerField()
-    previous_plot = models.ForeignKey('api.Plot', related_name='previous_crops')
     covered_by = models.ForeignKey('api.Covering', blank=True, null=True)
     supplier
     cost
