@@ -1,1 +1,8 @@
 docker-compose exec web python manage.py [cmd]
+docker swarm init
+docker stack deploy -c docker-compose.yml farm
+docker build -t farm-api .
+docker stack rm farm
+docker swarm leave --force
+docker stack ps farm
+docker stack deploy -f docker-compose.yml -f docker-compose.prod.yml farm
