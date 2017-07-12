@@ -8,6 +8,8 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]
+    depends_on:
+      - webnet
     networks:
       - webnet
   web:
@@ -20,27 +22,31 @@ services:
           memory: 50M
       restart_policy:
         condition: on-failure
-    command: python3 manage.py migrate && gunicorn farm_api.wsgi:application --bind 0.0.0.0:8000
-    # command: python3 manage.py runserver 0.0.0.0:8000
+    command: gunicorn farm_api.wsgi:application --bind 0.0.0.0:8080
+    # command: python3 manage.py runserver 0.0.0.0:8000 / python3 manage.py migrate && 
     volumes:
       - ./api:/code
     ports:
-      - "80:8000"
+      - "8080:8080"
     depends_on:
       - db
+      - webnet
     networks:
       - webnet
-  # nginx:
-  #   image: nginx
-  #   volumes:
-  #     - ./nginx.conf:/etc/nginx/conf.d
-  #   # volumes_from:
-  #   #   - web
-  #   ports:
-  #     - "8000:8000"
-  #   networks:
-  #     - webnet
-  #   depends_on:
-  #     - web
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./index.html:/etc/nginx/html/index.html
+    ports:
+      - "80:8000"
+      - "443:443"
+    networks:
+      - webnet
+    depends_on:
+      - web
+      - webnet
 networks:
   webnet:
+volumes:
+  web:

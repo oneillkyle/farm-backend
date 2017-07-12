@@ -5,4 +5,5 @@ docker build -t farm-api .
 docker stack rm farm
 docker swarm leave --force
 docker stack ps farm
-docker stack deploy -f docker-compose.yml -f docker-compose.prod.yml farm
+docker-compose up -f docker-compose.yml -f docker-compose.prod.yml farm
+docker service logs farm_web -f
