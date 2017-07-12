@@ -1,6 +1,25 @@
 version: '3'
 
 services:
+  web:
+    image: farm-web
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+    # command: gunicorn farm_api.wsgi:application --bind 0.0.0.0:8080
+    # command: python3 manage.py runserver 0.0.0.0:8000 / python3 manage.py migrate && 
+    volumes:
+      - ./web:/code
+      - node_modules:/code/node_modules
+    ports:
+      - "1337:1337"
+    networks:
+      - webnet
   db:
     image: postgres
     volumes:
@@ -8,11 +27,9 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]
-    depends_on:
-      - webnet
     networks:
       - webnet
-  web:
+  api:
     image: oneillkyle/farm-api:v1
     deploy:
       replicas: 5
@@ -30,7 +47,6 @@ services:
       - "8080:8080"
     depends_on:
       - db
-      - webnet
     networks:
       - webnet
   nginx:
@@ -44,9 +60,10 @@ services:
     networks:
       - webnet
     depends_on:
-      - web
-      - webnet
+      - api
 networks:
   webnet:
 volumes:
+  api:
   web:
+  node_modules:

@@ -1,0 +1,90 @@
+.wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  font-weight: bold;
+  text-align: center;
+}
+
+.header {
+  .image {
+    background-image: url('../assets/farm-banner.jpg');
+    height: 220px;
+  }
+  flex: 1 0 100%;
+}
+
+.footer {
+  padding: 10px 0;
+  height: 160px;
+  flex: 1 0 100%;
+  background: gainsboro;
+  opacity: .5;
+}
+
+.main {
+  padding: 10px 0;
+  flex: 1 0 100%;
+  text-align: left; //   background: deepskyblue;
+  @media (min-width: 800px) {
+    flex: 3 0px;
+  }
+}
+
+.aside-1 {
+  padding: 10px 0;
+  flex: 1 0 100%;
+  background: gold;
+  border-left: 1px solid black;
+  @media (min-width: 600px) {
+    flex: 1 auto;
+    border-left: none;
+  }
+}
+
+.aside-2 {
+  padding: 10px 0;
+  flex: 1 0 100%; //   background: hotpink;
+  border-left: none;
+  @media (min-width: 600px) {
+    border-left: 1px solid black;
+    flex: 1 auto;
+  }
+}
+
+@media all and (min-width: 800px) {
+  .main {
+    flex: 3 0px;
+  }
+  .aside-1 {
+    order: 1;
+  }
+  .main {
+    order: 2;
+  }
+  .aside-2 {
+    order: 3;
+  }
+  .footer {
+    order: 4;
+  }
+}
+
+.flex-header-row {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+}
+
+.flex-title {
+    text-align: left;
+    flex: 3 0px;
+}
+
+.flex-menu {
+    text-align: right;
+    flex: 1 0px;
+    span {
+        margin: 0 5px;
+    }
+}
