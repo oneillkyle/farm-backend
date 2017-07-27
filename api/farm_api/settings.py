@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
+    # 'rest_framework',
 
     'api',
 ]
@@ -125,19 +125,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-    ],
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 100,  # acts as default 'limit' parameter in URLs,
-    'DEFAULT_VERSION': 1.0,
-    'ALLOWED_VERSIONS': (1.0,),
-    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',
-    'DEFAULT_FILTER_BACKENDS': (
-        'rest_framework.filters.DjangoFilterBackend',
-        'rest_framework.filters.SearchFilter',
-        'rest_framework.filters.OrderingFilter'
-    ),
-    'DEFAULT_PARSER_CLASSES': ('rest_framework.parsers.JSONParser',)
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+#     ],
+#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+#     'PAGE_SIZE': 100,  # acts as default 'limit' parameter in URLs,
+#     'DEFAULT_VERSION': 1.0,
+#     'ALLOWED_VERSIONS': (1.0,),
+#     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',
+#     'DEFAULT_FILTER_BACKENDS': (
+#         'rest_framework.filters.DjangoFilterBackend',
+#         'rest_framework.filters.SearchFilter',
+#         'rest_framework.filters.OrderingFilter'
+#     ),
+#     'DEFAULT_PARSER_CLASSES': ('rest_framework.parsers.JSONParser',)
+# }
