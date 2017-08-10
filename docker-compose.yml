@@ -1,14 +1,69 @@
 version: '3'
 
 services:
+  web:
+    image: farm-web
+    deploy:
+      replicas: 5
+      # resources:
+      #   limits:
+      #     cpus: "0.1"
+      #     memory: 50M
+      restart_policy:
+        condition: on-failure
+    # command: gunicorn farm_api.wsgi:application --bind 0.0.0.0:8080
+    # command: python3 manage.py runserver 0.0.0.0:8000 / python3 manage.py migrate && 
+    volumes:
+      - ./web:/code
+      - node_modules:/code/node_modules
+    ports:
+      - "1337:1337"
+    networks:
+      - webnet
   db:
     image: postgres
-  web:
-    build: .
-    command: python3 manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/code
+      - ./data:/data
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - webnet
+  api:
+    image: oneillkyle/farm-api:v1
+    deploy:
+      replicas: 5
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+    command: gunicorn farm_api.wsgi:application --bind 0.0.0.0:8080
+    # command: python3 manage.py runserver 0.0.0.0:8000 / python3 manage.py migrate && 
+    volumes:
+      - ./api:/code
     ports:
-      - "8000:8000"
+      - "8080:8080"
     depends_on:
       - db
+    networks:
+      - webnet
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./index.html:/etc/nginx/html/index.html
+    ports:
+      - "80:8000"
+      - "443:443"
+    networks:
+      - webnet
+    depends_on:
+      - api
+networks:
+  webnet:
+volumes:
+  api:
+  web:
+  node_modules:
