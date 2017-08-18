@@ -2,7 +2,7 @@ version: '3'
 
 services:
   web:
-    image: farm-web
+    image: farm-web:v1
     deploy:
       replicas: 5
       # resources:
@@ -23,14 +23,19 @@ services:
   db:
     image: postgres
     volumes:
-      - ./data:/data
+      - ./data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: db
+      PGDATA: /tmp
     deploy:
       placement:
         constraints: [node.role == manager]
     networks:
       - webnet
   api:
-    image: oneillkyle/farm-api:v1
+    image: farm-api:v1
     deploy:
       replicas: 5
       resources:
@@ -39,8 +44,8 @@ services:
           memory: 50M
       restart_policy:
         condition: on-failure
-    command: gunicorn farm_api.wsgi:application --bind 0.0.0.0:8080
-    # command: python3 manage.py runserver 0.0.0.0:8000 / python3 manage.py migrate && 
+    # command: gunicorn farm_api.wsgi:application --bind 0.0.0.0:8080
+    command: python3 manage.py runserver 0.0.0.0:8080
     volumes:
       - ./api:/code
     ports:

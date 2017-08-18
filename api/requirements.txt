@@ -3,3 +3,4 @@ psycopg2
 graphene-django
 graphene
 gunicorn
+django-filter

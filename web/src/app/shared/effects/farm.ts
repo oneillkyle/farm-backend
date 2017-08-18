@@ -11,26 +11,26 @@ import { Observable } from 'rxjs/Observable';
 import { empty } from 'rxjs/observable/empty';
 import { of } from 'rxjs/observable/of';
 
-import { GoogleBooksService } from '../services/google-books';
-import * as book from '../actions/book';
+// import { GoogleBooksService } from '../services/google-books';
+// import * as book from '../actions/book';
 
 @Injectable()
 export class BookEffects {
 
-  @Effect()
-  search$: Observable<Action> = this.actions$
-    .ofType(book.SEARCH)
-    .debounceTime(300)
-    .map(toPayload)
-    .switchMap(query => {
-      if (query === '') {
-        return empty();
-      }
+  // @Effect()
+  // search$: Observable<Action> = this.actions$
+  //   .ofType(book.SEARCH)
+  //   .debounceTime(300)
+  //   .map(toPayload)
+  //   .switchMap(query => {
+  //     if (query === '') {
+  //       return empty();
+  //     }
 
-      return this.googleBooks.searchBooks(query)
-        .map(books => new book.SearchCompleteAction(books))
-        .catch(() => of(new book.SearchCompleteAction([])));
-    });
+  //     return this.googleBooks.searchBooks(query)
+  //       .map(books => new book.SearchCompleteAction(books))
+  //       .catch(() => of(new book.SearchCompleteAction([])));
+  //   });
 
-    constructor(private actions$: Actions, private googleBooks: GoogleBooksService) { }
+  //   constructor(private actions$: Actions, private googleBooks: GoogleBooksService) { }
 }
