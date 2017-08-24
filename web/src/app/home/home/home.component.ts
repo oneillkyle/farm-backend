@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+
+import { Farm, AppState } from '../../shared'
+import * as fromRoot from '../../shared/reducers';
+import * as farmActions from '../../shared/actions/farm';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +13,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  farms: Observable<Farm[]>;
 
-  constructor() { }
+  constructor(
+    private store: Store<AppState>,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    this.store.dispatch(new farmActions.SearchAction(null));
+    this.farms = this.store.select(fromRoot.getFarms).map(res => {
+      console.log(res);
+      return res;
+    });
+  }
+
+  getFarm(id) {
+    this.store.dispatch(new farmActions.SelectAction(id));
+    this.router.navigate(['/farm']);
   }
 
 }

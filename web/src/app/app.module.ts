@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { MdIconRegistry } from '@angular/material';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -34,7 +35,7 @@ import { reducers } from './shared/reducers';
       FarmEffects
     ])
   ],
-  providers: [],
+  providers: [MdIconRegistry],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

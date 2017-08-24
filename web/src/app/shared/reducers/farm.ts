@@ -22,7 +22,3 @@ export function reducer(state = initialState, action: stateActions.Actions): Sta
       return state;
   }
 }
-
-export const getFarms = (state: State) => state.farms;
-
-export const getFarm = (state: State) => state.farm;

@@ -14,3 +14,7 @@ export interface AppState {
 export const reducers: ActionReducerMap<AppState> = {
   farm: farm.reducer
 }
+
+export const getFarms = (state: AppState) => state.farm.farms
+
+export const getFarm = (state: AppState) => state.farm.farm;

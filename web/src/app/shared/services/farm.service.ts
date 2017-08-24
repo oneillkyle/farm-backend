@@ -11,7 +11,7 @@ export class FarmService {
   constructor(private http: Http) { }
 
   getFarms(): Observable<Farm[]> {
-    const q = gql`
+    const q = `
       query {
         allFarms {
           edges {
@@ -23,14 +23,14 @@ export class FarmService {
         }
       }
     `
-    return this.http.get('/graphql?query=' + q)
+    return this.http.get('/api/graphql?query=' + q)
       .map((response) => {
         return response.json().data.allFarms.edges.map((edge) => edge.node);
       });
   }
 
   getFarm(id: string) {
-    const q = gql`
+    const q = `
       query {
         farm(id: ${id}) {
           name
@@ -44,7 +44,7 @@ export class FarmService {
   }
 
   createFarm(name: string) {
-    const q = gql`
+    const q = `
       mutation farmMutation {
         createFarm(name: ${name}) {
           farm {

@@ -11,13 +11,14 @@ services:
       #     memory: 50M
       restart_policy:
         condition: on-failure
-    # command: gunicorn farm_api.wsgi:application --bind 0.0.0.0:8080
+    command: npm start
     # command: python3 manage.py runserver 0.0.0.0:8000 / python3 manage.py migrate && 
     volumes:
       - ./web:/code
       - node_modules:/code/node_modules
     ports:
       - "1337:1337"
+      - "49153:49153"
     restart: unless-stopped
     networks:
       - webnet
