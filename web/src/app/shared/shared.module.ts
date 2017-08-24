@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { FarmService } from './services';
+
 import {
   MdButtonModule,
   MdCheckboxModule,
@@ -89,6 +91,9 @@ const MATERIAL_MODULES = [
     ReactiveFormsModule,
     HttpModule
   ],
-  declarations: []
+  declarations: [],
+  providers: [
+    FarmService
+  ]
 })
 export class SharedModule { }
