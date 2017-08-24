@@ -11,23 +11,7 @@ class FarmType(DjangoObjectType):
         model = Farm
         filter_fields = {'name': ['icontains']}
         interfaces = (graphene.Node,)
-
-class CreateFarm(graphene.Mutation):
-
-    class Input:
-        name = graphene.String(required=True)
-
-    farm = graphene.Field(FarmType)
-
-    @staticmethod
-    def mutate(root, args, context, info):
-        name = args.get('name')
-        # farm = FarmType(name=name)
-        farm, created = Farm.objects.get_or_create(name=name)
-        return CreateFarm(farm=farm)
-
-class Mutations(graphene.AbstractType):
-    create_farm = CreateFarm.Field()
+        
 
 class BudgetType(DjangoObjectType):
     class Meta:
@@ -38,29 +22,29 @@ class BudgetType(DjangoObjectType):
 
 class Query(graphene.AbstractType):
     all_farms = DjangoFilterConnectionField(FarmType)
-    farm = graphene.Field(FarmType,
-                          id=graphene.Int(),
-                          name=graphene.String())
-
+    farm = graphene.relay.Node.Field(FarmType)
     all_budgets = DjangoFilterConnectionField(BudgetType)
-    budget = graphene.Field(BudgetType,
-                            id=graphene.Int(),
-                            name=graphene.String())
+    budget = graphene.relay.Node.Field(BudgetType)
+
+        # farm = graphene.Field(FarmType,
+    #                       id=graphene.Int(),
+    #                       name=graphene.String())
+
 
     def resolve_all_farms(self, args, context, info):
         return Farm.objects.all()
 
-    def resolve_farm(self, args, context, info):
-        id = args.get('id')
-        name = args.get('name')
+    # def resolve_farm(self, args, context, info):
+    #     id = args.get('id')
+    #     name = args.get('name')
 
-        if id is not None:
-            return Farm.objects.get(pk=id)
+    #     if id is not None:
+    #         return Farm.objects.get(pk=id)
 
-        if name is not None:
-            return Farm.objects.get(name=name)
+    #     if name is not None:
+    #         return Farm.objects.get(name=name)
 
-        return None
+    #     return None
 
     def resolve_all_budgets(self, args, context, info):
         # We can easily optimize query count in the resolve method

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import {
   MdButtonModule,
@@ -76,10 +78,16 @@ const MATERIAL_MODULES = [
 @NgModule({
   imports: [
     CommonModule,
-    MATERIAL_MODULES
+    MATERIAL_MODULES,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule
   ],
   exports: [
-    MATERIAL_MODULES
+    MATERIAL_MODULES,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule
   ],
   declarations: []
 })

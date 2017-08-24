@@ -1,16 +1,21 @@
 import * as stateActions from '../actions/farm';
 import { Farm } from '../datatypes';
 
-const initialState: Farm = {
-  name: null,
-  id: null
+export class State {
+  farms: Farm[]
+  farm: Farm
+}
+
+const initialState: State = {
+  farms: null,
+  farm: null
 };
 
-export function reducer(state = initialState, action: stateActions.Actions): Farm {
+export function reducer(state = initialState, action: stateActions.Actions): State {
   switch (action.type) {
-    case stateActions.LOAD:
+    case stateActions.SEARCH_COMPLETE:
       return Object.assign(state, {
-        name: action.payload,
+        farms: action.payload,
       });
 
     default:
@@ -18,4 +23,6 @@ export function reducer(state = initialState, action: stateActions.Actions): Far
   }
 }
 
-export const getName = (state: Farm) => state.name;
+export const getFarms = (state: State) => state.farms;
+
+export const getFarm = (state: State) => state.farm;

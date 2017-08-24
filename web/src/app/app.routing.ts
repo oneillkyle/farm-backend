@@ -13,7 +13,7 @@ const appRoutes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
- 
+
 @NgModule({
   imports: [
     RouterModule.forRoot(
