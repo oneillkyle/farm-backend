@@ -25,7 +25,7 @@ export class SelectAction implements Action {
   constructor(public payload: string) { }
 }
 
-export class SelectSuccessAction implements Action {
+export class SelectCompleteAction implements Action {
   readonly type = SELECT_COMPLETE;
 
   constructor(public payload: Farm) { }
@@ -39,4 +39,4 @@ export type Actions
   = SearchAction
   | SearchCompleteAction
   | SelectAction
-  | SelectSuccessAction;
+  | SelectCompleteAction;

@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
+import { FarmComponent } from './farm/farm.component';
 
-const homeRoutes: Routes = [
+const farmRoutes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: FarmComponent,
   }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forChild(homeRoutes)
+    RouterModule.forChild(farmRoutes)
   ],
   exports: [
     RouterModule
@@ -20,4 +20,4 @@ const homeRoutes: Routes = [
   providers: [
   ]
 })
-export class HomeRoutingModule { }
+export class FarmRoutingModule { }

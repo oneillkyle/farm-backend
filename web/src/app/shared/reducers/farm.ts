@@ -18,6 +18,11 @@ export function reducer(state = initialState, action: stateActions.Actions): Sta
         farms: action.payload,
       });
 
+    case stateActions.SELECT_COMPLETE:
+      return Object.assign(state, {
+        farm: action.payload,
+      });
+
     default:
       return state;
   }

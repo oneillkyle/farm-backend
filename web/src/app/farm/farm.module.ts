@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared';
+
+import { FarmRoutingModule } from './farm.routing';
+import { FarmComponent } from './farm/farm.component';
+
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule,
+    FarmRoutingModule
   ],
-  declarations: []
+  declarations: [FarmComponent]
 })
 export class FarmModule { }

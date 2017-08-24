@@ -9,7 +9,7 @@ from .models import (Farm, Budget, Plot)
 class FarmType(DjangoObjectType):
     class Meta:
         model = Farm
-        filter_fields = {'name': ['icontains']}
+        filter_fields = {'name': ['exact', 'icontains']}
         interfaces = (graphene.Node,)
         
 

@@ -29,17 +29,32 @@ export class FarmService {
       });
   }
 
-  getFarm(id: string) {
+  getFarm(name: string): Observable<Farm> {
     const q = `
-      query {
-        farm(id: ${id}) {
-          name
+      query{
+        allFarms(name: "${name}") {
+          edges {
+            node{
+              name
+              id
+            }
+          }
         }
       }
-    `
-    return this.http.get('/graphql?query=' + q)
+    `;
+    // const q = `
+    //   query {
+    //     farm(id: "${id}") {
+    //       name
+    //       id
+    //     }
+    //   }
+    // `
+    return this.http.get('/api/graphql?query=' + q)
       .map((response) => {
-        console.log(response);
+        const edges = response.json().data.allFarms.edges;
+
+        return edges.length ? edges[0].node : null;
       });
   }
 

@@ -31,5 +31,19 @@ export class FarmEffects {
         .catch(() => of(new farmActions.SearchCompleteAction([])));
     });
 
+    @Effect()
+    select$: Observable<Action> = this.actions$
+      .ofType(farmActions.SELECT)
+      .map(toPayload)
+      .switchMap(query => {
+        if (query === '') {
+          return empty();
+        }
+
+        return this.farmService.getFarm(query)
+          .map(farm => new farmActions.SelectCompleteAction(farm))
+          .catch(() => of(new farmActions.SelectCompleteAction(null)));
+      });
+
     constructor(private actions$: Actions, private farmService: FarmService) { }
 }
