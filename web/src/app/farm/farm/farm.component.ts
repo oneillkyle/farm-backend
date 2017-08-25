@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
@@ -13,16 +13,21 @@ import * as farmActions from '../../shared/actions/farm';
   styleUrls: ['./farm.component.scss']
 })
 export class FarmComponent implements OnInit {
-  farms: Observable<Farm[]>;
+  farm: Observable<Farm>;
 
   constructor(
     private store: Store<AppState>,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.store.dispatch(new farmActions.SearchAction(null));
-    this.farms = this.store.select(fromRoot.getFarms).map(res => {
+    this.route.params.subscribe(params => {
+      if (params['name']) {
+        this.store.dispatch(new farmActions.SelectAction(params['name']));
+      }
+    });
+    this.farm = this.store.select(fromRoot.getFarm).map(res => {
       return res;
     });
   }

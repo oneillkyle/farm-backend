@@ -4,6 +4,7 @@ import { SharedModule } from '../shared';
 
 import { FarmRoutingModule } from './farm.routing';
 import { FarmComponent } from './farm/farm.component';
+import { FarmListComponent } from './farm-list/farm-list.component';
 
 
 @NgModule({
@@ -12,6 +13,6 @@ import { FarmComponent } from './farm/farm.component';
     SharedModule,
     FarmRoutingModule
   ],
-  declarations: [FarmComponent]
+  declarations: [FarmComponent, FarmListComponent]
 })
 export class FarmModule { }
