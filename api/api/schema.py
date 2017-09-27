@@ -16,7 +16,7 @@ class FarmType(DjangoObjectType):
 class BudgetType(DjangoObjectType):
     class Meta:
         model = Budget
-        # filter_fields = {'name': ['icontains']}
+        filter_fields = {'farm__name': ['exact', 'icontains']}
         interfaces = (graphene.Node,)
 
 
@@ -26,15 +26,11 @@ class Query(graphene.AbstractType):
     all_budgets = DjangoFilterConnectionField(BudgetType)
     budget = graphene.relay.Node.Field(BudgetType)
 
-        # farm = graphene.Field(FarmType,
-    #                       id=graphene.Int(),
-    #                       name=graphene.String())
-
-
     def resolve_all_farms(self, args, context, info):
         return Farm.objects.all()
 
     # def resolve_farm(self, args, context, info):
+    #     print('resolve!')
     #     id = args.get('id')
     #     name = args.get('name')
 
@@ -47,17 +43,16 @@ class Query(graphene.AbstractType):
     #     return None
 
     def resolve_all_budgets(self, args, context, info):
-        # We can easily optimize query count in the resolve method
         return Budget.objects.all()
 
-    def resolve_budget(self, args, context, info):
-        id = args.get('id')
-        name = args.get('name')
+    # def resolve_budget(self, args, context, info):
+    #     id = args.get('id')
+    #     name = args.get('name')
 
-        if id is not None:
-            return Budget.objects.get(pk=id)
+    #     if id is not None:
+    #         return Budget.objects.get(pk=id)
 
-        if name is not None:
-            return Budget.objects.filter(farm__name=name).last()
+    #     if name is not None:
+    #         return Budget.objects.filter(farm__name=name).last()
 
-        return None
+    #     return None

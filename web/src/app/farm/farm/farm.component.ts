@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import { Farm, AppState } from '../../shared'
+import { Farm } from '../../shared'
 import * as fromRoot from '../../shared/reducers';
 import * as farmActions from '../../shared/actions/farm';
 
@@ -16,17 +16,17 @@ export class FarmComponent implements OnInit {
   farm: Observable<Farm>;
 
   constructor(
-    private store: Store<AppState>,
+    private store: Store<fromRoot.AppState>,
     private router: Router,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      if (params['name']) {
-        this.store.dispatch(new farmActions.SelectAction(params['name']));
-      }
-    });
+    // this.route.params.subscribe(params => {
+    //   if (params['name']) {
+    //     this.store.dispatch(new farmActions.SelectAction(params['name']));
+    //   }
+    // });
     this.farm = this.store.select(fromRoot.getFarm).map(res => {
       return res;
     });

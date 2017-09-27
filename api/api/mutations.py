@@ -16,9 +16,21 @@ class CreateFarm(graphene.Mutation):
     @staticmethod
     def mutate(root, args, context, info):
         name = args.get('name')
-        # farm = FarmType(name=name)
         farm, created = Farm.objects.get_or_create(name=name)
         return CreateFarm(farm=farm)
+
+# class CreateBudget(graphene.Mutation):
+
+#     class Input:
+#         name = graphene.String(required=True)
+
+#     farm = graphene.Field(FarmType)
+
+#     @staticmethod
+#     def mutate(root, args, context, info):
+#         name = args.get('name')
+#         farm, created = Farm.objects.get_or_create(name=name)
+#         return CreateFarm(farm=farm)
 
 class Mutations(graphene.AbstractType):
     create_farm = CreateFarm.Field()

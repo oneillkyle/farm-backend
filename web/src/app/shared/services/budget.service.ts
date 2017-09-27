@@ -2,21 +2,20 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { Farm, FarmReturn } from '../datatypes';
+import { Budget } from '../datatypes';
 
 @Injectable()
-export class FarmService {
+export class BudgetService {
 
   constructor(private http: Http) { }
 
-  getFarms(): Observable<Farm[]> {
+  getFarms(): Observable<Budget[]> {
     const q = `
       query {
-        allFarms {
+        allBudgets {
           edges {
             node {
               id
-              name
             }
           }
         }
@@ -28,13 +27,12 @@ export class FarmService {
       });
   }
 
-  getFarm(name: string): Observable<Farm> {
+  getFarm(id: string): Observable<Budget> {
     const q = `
       query{
-        allFarms(name: "${name}") {
+        allBudgets(id: "${id}") {
           edges {
             node{
-              name
               id
             }
           }
@@ -49,10 +47,10 @@ export class FarmService {
       });
   }
 
-  createFarm(name: string) {
+  createBudget(name: string) {
     const q = `
-      mutation farmMutation {
-        createFarm(name: ${name}) {
+      mutation budgetMutation {
+        createBudget(name: ${name}) {
           farm {
             id
             name

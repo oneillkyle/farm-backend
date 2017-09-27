@@ -1,10 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import * as fromRoot from './shared/reducers';
+import * as farmActions from './shared/actions/farm';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'ONeill Farm';
+
+  constructor(private store: Store<fromRoot.AppState>) {}
+
+  ngOnInit() {
+    this.store.dispatch(new farmActions.SelectAction('Kyle'));
+  }
 }

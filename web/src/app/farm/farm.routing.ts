@@ -5,12 +5,12 @@ import { FarmComponent } from './farm/farm.component';
 import { FarmListComponent } from './farm-list/farm-list.component';
 
 const farmRoutes: Routes = [
+  // {
+  //   path: '',
+  //   component: FarmListComponent
+  // },
   {
     path: '',
-    component: FarmListComponent
-  },
-  {
-    path: ':name',
     component: FarmComponent
   }
 ];
