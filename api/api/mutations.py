@@ -25,8 +25,8 @@ class CreateBudget(graphene.Mutation):
     class Input:
         name = graphene.String(required=True)
         amount = graphene.Float(required=True)
-        start_date = graphene.types.datetime.DateTime(required=True)
-        end_date = graphene.types.datetime.DateTime(required=True)
+        startDate = graphene.types.datetime.DateTime(required=True)
+        endDate = graphene.types.datetime.DateTime(required=True)
 
     budget = graphene.Field(BudgetType)
 
@@ -35,8 +35,8 @@ class CreateBudget(graphene.Mutation):
         budget = Budget.objects.create(
             farm__name=args.get('name'),
             amount=args.get('amount'),
-            start_date=args.get('start_date'),
-            end_date=args.get('end_date'),
+            start_date=args.get('startDate'),
+            end_date=args.get('endDate'),
         )
         return CreateBudget(budget=budget)
 

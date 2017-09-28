@@ -36,6 +36,16 @@ export class FarmService {
             node{
               name
               id
+              budgets {
+                edges {
+                  node {
+                    id
+                    amount
+                    startDate
+                    endDate
+                  }
+                }
+              }
             }
           }
         }
@@ -67,27 +77,3 @@ export class FarmService {
       });
   }
 }
-
-// {
-//   farm(id: "RmFybVR5cGU6MQ==") {
-//   	id
-//     name
-//   }
-// }
-// {
-//   allFarms(name: "Kyle") {
-//     edges {
-//       node {
-//         name
-//         id
-//         budgets {
-//           edges {
-//             node {
-//               id
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }

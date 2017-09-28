@@ -47,13 +47,20 @@ export class BudgetService {
       });
   }
 
-  createBudget(name: string) {
+  createBudget(name: string, amount: number, startDate: string, endDate: string) {
     const q = `
       mutation budgetMutation {
-        createBudget(name: ${name}) {
-          farm {
+        createBudget(
+          name: ${name}
+          amount: ${amount},
+          startDate: ${startDate},
+          endDate: ${endDate}
+        ) {
+          budget {
             id
-            name
+            amount
+            startDate
+            endDate
           }
         }
       }

@@ -1,6 +1,13 @@
 export class Farm {
   public name: string;
   public id?: number;
+  public budgets: {
+    edges: [
+      {
+        node: Budget
+      }
+    ]
+  }
 }
 
 export class Budget {
