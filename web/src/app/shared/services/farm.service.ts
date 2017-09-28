@@ -67,3 +67,27 @@ export class FarmService {
       });
   }
 }
+
+// {
+//   farm(id: "RmFybVR5cGU6MQ==") {
+//   	id
+//     name
+//   }
+// }
+// {
+//   allFarms(name: "Kyle") {
+//     edges {
+//       node {
+//         name
+//         id
+//         budgets {
+//           edges {
+//             node {
+//               id
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }

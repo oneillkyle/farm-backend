@@ -9,7 +9,7 @@ export class BudgetService {
 
   constructor(private http: Http) { }
 
-  getFarms(): Observable<Budget[]> {
+  getBudgets(): Observable<Budget[]> {
     const q = `
       query {
         allBudgets {
@@ -27,7 +27,7 @@ export class BudgetService {
       });
   }
 
-  getFarm(id: string): Observable<Budget> {
+  getBudget(id: string): Observable<Budget> {
     const q = `
       query{
         allBudgets(id: "${id}") {
