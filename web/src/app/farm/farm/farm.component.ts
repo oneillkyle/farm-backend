@@ -27,9 +27,7 @@ export class FarmComponent implements OnInit {
     //     this.store.dispatch(new farmActions.SelectAction(params['name']));
     //   }
     // });
-    this.farm = this.store.select(fromRoot.getFarm).map(res => {
-      return res;
-    });
+    this.farm = this.store.select(fromRoot.getFarm);
   }
 
   getFarm(name) {

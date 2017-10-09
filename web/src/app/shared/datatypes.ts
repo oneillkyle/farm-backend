@@ -1,13 +1,7 @@
 export class Farm {
   public name: string;
   public id?: number;
-  public budgets: {
-    edges: [
-      {
-        node: Budget
-      }
-    ]
-  }
+  public budgets?:  Budget[];
 }
 
 export class Budget {
@@ -23,4 +17,10 @@ export class FarmReturn {
       edges: Array<{ node: Farm }>
     }
   }
+}
+
+export class Log {
+  message?: string;
+  code?: number;
+  error?: boolean;
 }

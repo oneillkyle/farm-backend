@@ -10,3 +10,4 @@ docker stack ps farm
 docker-compose up -f docker-compose.yml -f docker-compose.prod.yml farm
 docker service logs farm_web -f
 docker-compose up [-d] (background)
+docker build -t whenry/fedora-jboss:latest -t ./web

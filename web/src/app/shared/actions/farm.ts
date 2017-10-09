@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Farm } from '../datatypes';
+import { Farm, Budget } from '../datatypes';
 
 export const SEARCH = '[Farm] Search';
 export const SEARCH_COMPLETE = '[Farm] Search Complete';
@@ -35,7 +35,7 @@ export class SelectCompleteAction implements Action {
  * Export a type alias of all actions in this action group
  * so that reducers can easily compose action types
  */
-export type Actions
+export type FarmActions
   = SearchAction
   | SearchCompleteAction
   | SelectAction

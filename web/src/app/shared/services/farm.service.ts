@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { get } from 'lodash';
 
 import { Farm, FarmReturn } from '../datatypes';
 
@@ -55,7 +56,7 @@ export class FarmService {
       .map((response) => {
         const edges = response.json().data.allFarms.edges;
 
-        return edges.length ? edges[0].node : null;
+        return this.formatFarm(edges.length ? edges[0].node : null);
       });
   }
 
@@ -75,5 +76,12 @@ export class FarmService {
       .map((response) => {
         console.log(response);
       });
+  }
+
+  formatFarm(farm) {
+    if (!farm) { return farm; }
+    const f = farm;
+    f.budgets = get(f.budgets, 'edges', []).map((node) => node.node);
+    return f;
   }
 }
