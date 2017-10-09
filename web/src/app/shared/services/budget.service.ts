@@ -1,23 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { get } from 'lodash';
 
-import { Farm, FarmReturn } from '../datatypes';
+import { Budget } from '../datatypes';
 
 @Injectable()
-export class FarmService {
+export class BudgetService {
 
   constructor(private http: Http) { }
 
-  getFarms(): Observable<Farm[]> {
+  getBudgets(): Observable<Budget[]> {
     const q = `
       query {
-        allFarms {
+        allBudgets {
           edges {
             node {
               id
-              name
             }
           }
         }
@@ -29,24 +27,13 @@ export class FarmService {
       });
   }
 
-  getFarm(name: string): Observable<Farm> {
+  getBudget(id: string): Observable<Budget> {
     const q = `
       query{
-        allFarms(name: "${name}") {
+        allBudgets(id: "${id}") {
           edges {
             node{
-              name
               id
-              budgets {
-                edges {
-                  node {
-                    id
-                    amount
-                    startDate
-                    endDate
-                  }
-                }
-              }
             }
           }
         }
@@ -56,17 +43,24 @@ export class FarmService {
       .map((response) => {
         const edges = response.json().data.allFarms.edges;
 
-        return this.formatFarm(edges.length ? edges[0].node : null);
+        return edges.length ? edges[0].node : null;
       });
   }
 
-  createFarm(name: string) {
+  createBudget(budget: {name: string, amount: number, startDate: string, endDate: string}) {
     const q = `
-      mutation farmMutation {
-        createFarm(name: ${name}) {
-          farm {
+      mutation budgetMutation {
+        createBudget(
+          name: ${budget.name}
+          amount: ${budget.amount},
+          startDate: ${budget.startDate},
+          endDate: ${budget.endDate}
+        ) {
+          budget {
             id
-            name
+            amount
+            startDate
+            endDate
           }
         }
       }
@@ -76,12 +70,5 @@ export class FarmService {
       .map((response) => {
         console.log(response);
       });
-  }
-
-  formatFarm(farm) {
-    if (!farm) { return farm; }
-    const f = farm;
-    f.budgets = get(f.budgets, 'edges', []).map((node) => node.node);
-    return f;
   }
 }

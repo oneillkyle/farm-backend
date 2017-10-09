@@ -11,26 +11,39 @@ import { Observable } from 'rxjs/Observable';
 import { empty } from 'rxjs/observable/empty';
 import { of } from 'rxjs/observable/of';
 
-import { GoogleBooksService } from '../services/google-books';
-import * as book from '../actions/book';
+import { FarmService } from '../services';
+import * as farmActions from '../actions/farm';
 
 @Injectable()
-export class BookEffects {
+export class FarmEffects {
 
   @Effect()
   search$: Observable<Action> = this.actions$
-    .ofType(book.SEARCH)
-    .debounceTime(300)
+    .ofType(farmActions.SEARCH)
     .map(toPayload)
     .switchMap(query => {
       if (query === '') {
         return empty();
       }
 
-      return this.googleBooks.searchBooks(query)
-        .map(books => new book.SearchCompleteAction(books))
-        .catch(() => of(new book.SearchCompleteAction([])));
+      return this.farmService.getFarms()
+        .map(farms => new farmActions.SearchCompleteAction(farms))
+        .catch(() => of(new farmActions.SearchCompleteAction([])));
     });
 
-    constructor(private actions$: Actions, private googleBooks: GoogleBooksService) { }
+    @Effect()
+    select$: Observable<Action> = this.actions$
+      .ofType(farmActions.SELECT)
+      .map(toPayload)
+      .switchMap(query => {
+        if (query === '') {
+          return empty();
+        }
+
+        return this.farmService.getFarm(query)
+          .map(farm => new farmActions.SelectCompleteAction(farm))
+          .catch(() => of(new farmActions.SelectCompleteAction(null)));
+      });
+
+    constructor(private actions$: Actions, private farmService: FarmService) { }
 }

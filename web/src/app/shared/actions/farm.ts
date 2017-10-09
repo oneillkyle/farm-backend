@@ -1,28 +1,22 @@
 import { Action } from '@ngrx/store';
-import { Farm } from '../datatypes';
+import { Farm, Budget } from '../datatypes';
 
-export const SEARCH = '[Book] Search';
-export const SEARCH_COMPLETE = '[Book] Search Complete';
-export const LOAD = '[Book] Load';
-export const SELECT = '[Book] Select';
+export const SEARCH = '[Farm] Search';
+export const SEARCH_COMPLETE = '[Farm] Search Complete';
+export const SELECT = '[Farm] Select';
+export const SELECT_COMPLETE = '[Farm] Select Complete';
 
 
 export class SearchAction implements Action {
   readonly type = SEARCH;
 
-  constructor(public payload: string) { }
+  constructor(public payload: void) { }
 }
 
 export class SearchCompleteAction implements Action {
   readonly type = SEARCH_COMPLETE;
 
-  constructor(public payload: Book[]) { }
-}
-
-export class LoadAction implements Action {
-  readonly type = LOAD;
-
-  constructor(public payload: Book) { }
+  constructor(public payload: Farm[]) { }
 }
 
 export class SelectAction implements Action {
@@ -31,12 +25,18 @@ export class SelectAction implements Action {
   constructor(public payload: string) { }
 }
 
+export class SelectCompleteAction implements Action {
+  readonly type = SELECT_COMPLETE;
+
+  constructor(public payload: Farm) { }
+}
+
 /**
  * Export a type alias of all actions in this action group
  * so that reducers can easily compose action types
  */
-export type Actions
+export type FarmActions
   = SearchAction
   | SearchCompleteAction
-  | LoadAction
-  | SelectAction;
+  | SelectAction
+  | SelectCompleteAction;

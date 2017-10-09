@@ -1,0 +1,31 @@
+<md-expansion-panel [formGroup]="form">
+  <md-expansion-panel-header>
+    <md-panel-title>
+      <span *ngIf="budget.start_date || budget.end_date">{{ budget.start_date }} - {{ budget.end_date }}</span>
+      <span *ngIf="!budget.start_date && !budget.end_date">Create New Budget</span>
+    </md-panel-title>
+    <md-panel-description>
+      {{ budget.amount }}
+      <!-- Type your name and age
+      <md-icon>account_circle</md-icon> -->
+    </md-panel-description>
+  </md-expansion-panel-header>
+
+  <md-form-field>
+    <input formControlName="start_date" mdInput placeholder="Start Date" [mdDatepicker]="startPicker" (focus)="startPicker.open()" readonly>
+  </md-form-field>
+  <md-datepicker #startPicker></md-datepicker>
+
+  <md-form-field>
+    <input formControlName="end_date" mdInput placeholder="End Date" [mdDatepicker]="endPicker" (focus)="endPicker.open()" readonly>
+  </md-form-field>
+  <md-datepicker #endPicker></md-datepicker>
+
+  <md-form-field>
+    <input  formControlName="amount" mdInput type="number" min="1" placeholder="Amount">
+  </md-form-field>
+
+  <md-action-row>
+    <button md-button color="primary" (click)="doSave(form)">Save</button>
+  </md-action-row>
+</md-expansion-panel>
