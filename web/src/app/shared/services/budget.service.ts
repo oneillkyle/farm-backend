@@ -3,6 +3,7 @@ import { Headers, Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { Budget } from '../datatypes';
+import { getCurrentCsrfHeaders, formatDate } from './utils';
 
 @Injectable()
 export class BudgetService {
@@ -47,14 +48,14 @@ export class BudgetService {
       });
   }
 
-  createBudget(budget: {name: string, amount: number, startDate: string, endDate: string}) {
+  createBudget(budget: Budget): Observable<Budget> {
     const q = `
       mutation budgetMutation {
         createBudget(
-          name: ${budget.name}
+          name: "Kyle",
           amount: ${budget.amount},
-          startDate: ${budget.startDate},
-          endDate: ${budget.endDate}
+          startDate: "${formatDate(budget.startDate)}",
+          endDate: "${formatDate(budget.endDate)}"
         ) {
           budget {
             id
@@ -66,9 +67,24 @@ export class BudgetService {
       }
     `;
 
-    return this.http.post('/graphql', q)
+    return this.http.post('/api/graphql', {query: q}, {headers: getCurrentCsrfHeaders()})
       .map((response) => {
-        console.log(response);
+        return response.json().data.createBudget.budget;
+      });
+  }
+
+  deleteBudget(id: string): Observable<string> {
+    const q = `
+      mutation budgetMutation {
+        deleteBudget(id: "${id}") {
+          id
+        }
+      }
+    `;
+
+    return this.http.post('/api/graphql', {query: q}, {headers: getCurrentCsrfHeaders()})
+      .map((response) => {
+        return response.json().data.deleteBudget.id;
       });
   }
 }

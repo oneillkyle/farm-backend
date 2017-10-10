@@ -63,7 +63,7 @@ export class FarmService {
   createFarm(name: string) {
     const q = `
       mutation farmMutation {
-        createFarm(name: ${name}) {
+        createFarm(name: "${name}") {
           farm {
             id
             name
@@ -72,7 +72,7 @@ export class FarmService {
       }
     `;
 
-    return this.http.post('/graphql', q)
+    return this.http.post('/api/graphql', q)
       .map((response) => {
         console.log(response);
       });

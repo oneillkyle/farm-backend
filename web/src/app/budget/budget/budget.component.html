@@ -1,23 +1,23 @@
 <md-expansion-panel [formGroup]="form">
   <md-expansion-panel-header>
     <md-panel-title>
-      <span *ngIf="budget.start_date || budget.end_date">{{ budget.start_date }} - {{ budget.end_date }}</span>
-      <span *ngIf="!budget.start_date && !budget.end_date">Create New Budget</span>
+      <span *ngIf="budget.startDate || budget.endDate">{{ budget.startDate | date:'shortDate' }} - {{ budget.endDate | date:'shortDate' }}</span>
+      <span *ngIf="!budget.startDate && !budget.endDate">Create New Budget</span>
     </md-panel-title>
     <md-panel-description>
-      {{ budget.amount }}
+      {{ budget.amount | currency:'USD':true }}
       <!-- Type your name and age
       <md-icon>account_circle</md-icon> -->
     </md-panel-description>
   </md-expansion-panel-header>
 
   <md-form-field>
-    <input formControlName="start_date" mdInput placeholder="Start Date" [mdDatepicker]="startPicker" (focus)="startPicker.open()" readonly>
+    <input formControlName="startDate" mdInput placeholder="Start Date" [mdDatepicker]="startPicker" (focus)="startPicker.open()" readonly>
   </md-form-field>
   <md-datepicker #startPicker></md-datepicker>
 
   <md-form-field>
-    <input formControlName="end_date" mdInput placeholder="End Date" [mdDatepicker]="endPicker" (focus)="endPicker.open()" readonly>
+    <input formControlName="endDate" mdInput placeholder="End Date" [mdDatepicker]="endPicker" (focus)="endPicker.open()" readonly>
   </md-form-field>
   <md-datepicker #endPicker></md-datepicker>
 
@@ -26,6 +26,7 @@
   </md-form-field>
 
   <md-action-row>
+    <button *ngIf="budget.id" md-button color="warn" (click)="delete.emit(budget.id)">Delete</button>
     <button md-button color="primary" (click)="doSave(form)">Save</button>
   </md-action-row>
 </md-expansion-panel>

@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { FarmService } from './services';
-
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -104,7 +102,6 @@ const MATERIAL_MODULES = [
   ],
   declarations: [],
   providers: [
-    FarmService
   ]
 })
 export class SharedModule { }

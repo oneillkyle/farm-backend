@@ -14,6 +14,8 @@ export class BudgetComponent implements OnInit {
 
   @Output()
   save: EventEmitter<any> = new EventEmitter();
+  @Output()
+  delete: EventEmitter<any> = new EventEmitter();
 
   form: FormGroup;
 
@@ -22,8 +24,8 @@ export class BudgetComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      start_date: [this.budget.start_date, Validators.required],
-      end_date: [this.budget.end_date, Validators.required],
+      startDate: [this.budget.startDate, Validators.required],
+      endDate: [this.budget.endDate, Validators.required],
       amount: [this.budget.amount, Validators.required]
     });
   }

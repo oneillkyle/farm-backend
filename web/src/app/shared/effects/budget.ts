@@ -23,15 +23,28 @@ export class BudgetEffects {
       .ofType(budgetActions.CREATE)
       .map(toPayload)
       .switchMap(budget => {
-        console.log(budget);
         if (!budget) {
           return empty();
         }
 
         return this.budgetService.createBudget(budget)
-          .map(farm => new budgetActions.CreateCompleteAction(budget))
+          .map(response => new budgetActions.CreateCompleteAction(response))
           .catch(() => of(new logActions.ErrorAction({error: true})));
       });
+
+      @Effect()
+      delete$: Observable<Action> = this.actions$
+        .ofType(budgetActions.DELETE)
+        .map(toPayload)
+        .switchMap(budgetId => {
+          if (!budgetId) {
+            return empty();
+          }
+
+          return this.budgetService.deleteBudget(budgetId)
+            .map(response => new budgetActions.DeleteCompleteAction(response))
+            .catch(() => of(new logActions.ErrorAction({error: true})));
+        });
 
     constructor(private actions$: Actions, private budgetService: BudgetService) { }
 }

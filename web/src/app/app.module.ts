@@ -16,7 +16,10 @@ import { SharedModule } from './shared';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { FarmEffects } from './shared/effects';
+import { BudgetEffects } from './shared/effects';
 import { reducers } from './shared/reducers';
+
+import { FarmService, BudgetService } from './shared/services';
 
 @NgModule({
   declarations: [
@@ -32,10 +35,11 @@ import { reducers } from './shared/reducers';
       initialState: {}
     }),
     EffectsModule.forRoot([
-      FarmEffects
+      FarmEffects,
+      BudgetEffects
     ])
   ],
-  providers: [MdIconRegistry],
+  providers: [MdIconRegistry, FarmService, BudgetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

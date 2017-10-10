@@ -25,12 +25,17 @@ export class BudgetListComponent implements OnInit {
   }
 
   addBudget(budget) {
-    console.log(budget);
     this.store.dispatch(new budgetActions.CreateAction(budget));
   }
 
   save(budget) {
     console.log(budget);
+  }
+
+  delete(budgetId) {
+    if (confirm('Are you sure you want to delete this budget?')) {
+      this.store.dispatch(new budgetActions.DeleteAction(budgetId));
+    };
   }
 
 }

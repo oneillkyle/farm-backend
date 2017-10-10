@@ -1,6 +1,6 @@
 <md-accordion class="example-headers-align">
   <ng-container *ngFor="let budget of budgets | async">
-    <app-budget [budget]="budget" (save)="save($event)"></app-budget>
+    <app-budget [budget]="budget" (save)="save($event)" (delete)="delete($event)"></app-budget>
   </ng-container>
   <app-budget (save)="addBudget($event)"></app-budget>
 </md-accordion>

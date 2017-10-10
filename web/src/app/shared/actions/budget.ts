@@ -9,6 +9,10 @@ export const UPDATE = '[Budget] Update';
 export const UPDATE_COMPLETE = '[Budget] Update Complete';
 export const UPDATE_FAIL = '[Budget] Update Fail';
 
+export const DELETE = '[Budget] Delete';
+export const DELETE_COMPLETE = '[Budget] Delete Complete';
+export const DELETE_FAIL = '[Budget] Delete Fail';
+
 
 export class CreateAction implements Action {
   readonly type = CREATE;
@@ -20,12 +24,6 @@ export class CreateCompleteAction implements Action {
   readonly type = CREATE_COMPLETE;
 
   constructor(public payload: Budget) { }
-}
-
-export class CreateFailAction implements Action {
-  readonly type = CREATE_FAIL;
-
-  constructor(public payload: {}) { }
 }
 
 export class UpdateAction implements Action {
@@ -40,10 +38,16 @@ export class UpdateCompleteAction implements Action {
   constructor(public payload: Budget) { }
 }
 
-export class UpdateFailAction implements Action {
-  readonly type = UPDATE_FAIL;
+export class DeleteAction implements Action {
+  readonly type = DELETE;
 
-  constructor(public payload: {}) { }
+  constructor(public payload: string) { }
+}
+
+export class DeleteCompleteAction implements Action {
+  readonly type = DELETE_COMPLETE;
+
+  constructor(public payload: string) { }
 }
 
 /**
@@ -53,7 +57,7 @@ export class UpdateFailAction implements Action {
 export type BudgetActions
   = UpdateAction
   | UpdateCompleteAction
-  | UpdateFailAction
   | CreateAction
   | CreateCompleteAction
-  | CreateFailAction
+  | DeleteAction
+  | DeleteCompleteAction;

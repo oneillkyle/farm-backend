@@ -5,10 +5,12 @@ export class Farm {
 }
 
 export class Budget {
-  public farm: string;
   public amount: string;
-  public start_date: string;
-  public end_date: string;
+  public startDate: string;
+  public endDate: string;
+  public farm?: string;
+  public name?: string;
+  public id?: string;
 }
 
 export class FarmReturn {
