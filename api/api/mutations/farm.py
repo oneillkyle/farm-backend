@@ -4,8 +4,8 @@ from graphene_django.types import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
 from graphql_relay.node.node import from_global_id
 
-from .schema import (FarmType, BudgetType)
-from .models import (Farm, Budget, Plot)
+from ..schema import (FarmType, BudgetType)
+from ..models import (Farm, Budget, Plot)
 
 class CreateFarm(graphene.Mutation):
 

@@ -1,7 +1,7 @@
 import graphene
 
 import api.schema
-import api.mutations
+import api.mutations.farm
 
 
 class Query(api.schema.Query, graphene.ObjectType):
@@ -9,7 +9,7 @@ class Query(api.schema.Query, graphene.ObjectType):
     # as we begin to add more apps to our project
     pass
 
-class Mutations(api.mutations.Mutations, graphene.ObjectType):
+class Mutations(api.mutations.farm.Mutations, graphene.ObjectType):
     pass
 
 schema = graphene.Schema(query=Query, mutation=Mutations)

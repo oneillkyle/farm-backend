@@ -29,30 +29,5 @@ class Query(graphene.AbstractType):
     def resolve_all_farms(self, args, context, info):
         return Farm.objects.all()
 
-    # def resolve_farm(self, args, context, info):
-    #     print('resolve!')
-    #     id = args.get('id')
-    #     name = args.get('name')
-
-    #     if id is not None:
-    #         return Farm.objects.get(pk=id)
-
-    #     if name is not None:
-    #         return Farm.objects.get(name=name)
-
-    #     return None
-
     def resolve_all_budgets(self, args, context, info):
         return Budget.objects.all()
-
-    # def resolve_budget(self, args, context, info):
-    #     id = args.get('id')
-    #     name = args.get('name')
-
-    #     if id is not None:
-    #         return Budget.objects.get(pk=id)
-
-    #     if name is not None:
-    #         return Budget.objects.filter(farm__name=name).last()
-
-    #     return None

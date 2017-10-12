@@ -48,6 +48,7 @@ class Plot(models.Model): #location
 '''
 class Crop(models.Model):
     crop_type = models.ForeignKey('api.CropType', related_name='crops')
+    description = models.CharField(max_length=2000, blank=True)
 
     def __unicode__(self):
         return "Crop: {0}".format(self.crop_type)
