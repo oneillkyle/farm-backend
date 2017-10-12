@@ -73,6 +73,31 @@ export class BudgetService {
       });
   }
 
+  updateBudget(budget: Budget): Observable<Budget> {
+    const q = `
+      mutation budgetMutation {
+        updateBudget(
+          id: "${budget.id}",
+          amount: ${budget.amount},
+          startDate: "${budget.startDate}",
+          endDate: "${budget.endDate}"
+        ) {
+          budget {
+            id
+            amount
+            startDate
+            endDate
+          }
+        }
+      }
+    `;
+
+    return this.http.post('/api/graphql', {query: q}, {headers: getCurrentCsrfHeaders()})
+      .map((response) => {
+        return response.json().data.updateBudget.budget;
+      });
+  }
+
   deleteBudget(id: string): Observable<string> {
     const q = `
       mutation budgetMutation {

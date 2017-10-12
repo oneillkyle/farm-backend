@@ -23,7 +23,8 @@ export function getCookie(cName: string) {
   return '';
 }
 
-export function formatDate(date) {
+export function formatDate(d) {
+  const date = new Date(d);
   let month = '' + (date.getMonth() + 1);
   let day = '' + date.getDate();
   const year = date.getFullYear();

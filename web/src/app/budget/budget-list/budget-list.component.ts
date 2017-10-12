@@ -29,7 +29,7 @@ export class BudgetListComponent implements OnInit {
   }
 
   save(budget) {
-    console.log(budget);
+    this.store.dispatch(new budgetActions.UpdateAction(budget));
   }
 
   delete(budgetId) {

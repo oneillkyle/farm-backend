@@ -56,28 +56,28 @@ class DeleteBudget(graphene.Mutation):
         budget.delete()
         return DeleteBudget(id=args.get('id'))
 
-# class UpdateBudget(graphene.Mutation):
+class UpdateBudget(graphene.Mutation):
 
-#     class Input:
-#         id = graphene.String(required=True)
-#         amount = graphene.Float(required=True)
-#         start_date = graphene.types.datetime.DateTime(required=True)
-#         end_date = graphene.types.datetime.DateTime(required=True)
+    class Input:
+        id = graphene.String(required=True)
+        amount = graphene.Float(required=True)
+        startDate = graphene.types.datetime.DateTime(required=True)
+        endDate = graphene.types.datetime.DateTime(required=True)
 
-#     budget = graphene.Field(BudgetType)
+    budget = graphene.Field(BudgetType)
 
-#     @staticmethod
-#     def mutate(root, args, context, info):
-#         budget = Budget.objects.get(id=id)
-#         budget = Budget.objects.create(
-#             farm__name=args.get('name'),
-#             amount=args.get('amount'),
-#             start_date=args.get('start_date'),
-#             end_date=args.get('end_date'),
-#         )
-#         return CreateBudget(budget=budget)
+    @staticmethod
+    def mutate(root, args, context, info):
+        obj, id = from_global_id(args.get('id'))
+        budget = Budget.objects.get(id=id)
+        budget.amount = args.get('amount')
+        budget.startDate = args.get('startDate')
+        budget.endDate = args.get('endDate')
+        budget.save()
+        return CreateBudget(budget=budget)
 
 class Mutations(graphene.AbstractType):
     create_farm = CreateFarm.Field()
     create_budget = CreateBudget.Field()
     delete_budget = DeleteBudget.Field()
+    update_budget = UpdateBudget.Field()

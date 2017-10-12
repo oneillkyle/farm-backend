@@ -46,5 +46,19 @@ export class BudgetEffects {
             .catch(() => of(new logActions.ErrorAction({error: true})));
         });
 
+        @Effect()
+        update$: Observable<Action> = this.actions$
+          .ofType(budgetActions.UPDATE)
+          .map(toPayload)
+          .switchMap(budget => {
+            if (!budget) {
+              return empty();
+            }
+    
+            return this.budgetService.updateBudget(budget)
+              .map(response => new budgetActions.UpdateCompleteAction(response))
+              .catch(() => of(new logActions.ErrorAction({error: true})));
+          });
+
     constructor(private actions$: Actions, private budgetService: BudgetService) { }
 }

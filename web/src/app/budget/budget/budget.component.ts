@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 import { Budget } from '../../shared';
+import { get } from 'lodash';
 
 @Component({
   selector: 'app-budget',
@@ -31,6 +32,10 @@ export class BudgetComponent implements OnInit {
   }
 
   doSave({value, valid}) {
-    if (valid) { this.save.emit(value); }
+    if (valid) {
+      this.save.emit(
+        Object.assign({}, {id: get(this.budget, 'id')} ,value)
+      );
+    }
   }
 }
