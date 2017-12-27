@@ -12,6 +12,10 @@ const farmRoutes: Routes = [
       {
         path: 'budgets',
         loadChildren: 'app/budget/budget.module#BudgetModule'
+      },
+      {
+        path: '',
+        loadChildren: 'app/overview/overview.module#OverviewModule'
       }
     ]
   }
