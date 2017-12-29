@@ -1,0 +1,206 @@
+{
+  "type": "Topology",
+  "arcs": [
+    [
+      [9, 49],
+      [275, 389],
+      [289, -230],
+      [-38, -173],
+      [-174, -35],
+      [-110, 39],
+      [-80, -39],
+      [-171, 14],
+      [9, 35]
+    ],
+    [
+      [13, 51],
+      [123, 169],
+      [110, -89],
+      [-5, -49],
+      [-19, 2],
+      [-7, 1],
+      [-9, -8],
+      [-13, -12],
+      [-12, -2],
+      [-12, -30],
+      [1, -10],
+      [-8, -13],
+      [-153, 8],
+      [-3, 9],
+      [4, 12],
+      [3, 12]
+    ],
+    [
+      [137, 222],
+      [50, 71],
+      [167, -119],
+      [0, -99],
+      [-27, 27],
+      [-18, 7],
+      [-16, 11],
+      [-33, 24],
+      [-14, -12],
+      [-109, 90]
+    ],
+    [
+      [271, 416],
+      [17, 8],
+      [25, -44],
+      [0, -21],
+      [46, -48],
+      [-4, -133],
+      [-166, 113],
+      [0, 7],
+      [82, 118]
+    ],
+    [
+      [480, 105],
+      [-12, -3],
+      [-22, -22],
+      [-26, -7],
+      [-30, -9],
+      [-19, 0],
+      [-16, 12],
+      [7, 185],
+      [27, 11],
+      [-2, 23],
+      [32, -3],
+      [99, -55],
+      [35, -84],
+      [-73, -48]
+    ],
+    [
+      [480, 104],
+      [73, 48],
+      [1, -5],
+      [-18, -64],
+      [-17, 3],
+      [-3, -9],
+      [-36, 27]
+    ]
+  ],
+  "transform": {
+    "scale": [0.000025938698766297613, 0.00001353403501212889],
+    "translate": [-123.91415884735, 44.77358071275885]
+  },
+  "objects": {
+    "19585-Siletz-Highway-Siletz-OR": {
+      "type": "GeometryCollection",
+      "geometries": [{
+        "arcs": [
+          [0]
+        ],
+        "type": "Polygon",
+        "properties": {
+          "Name": "Farm",
+          "description": null,
+          "timestamp": null,
+          "begin": null,
+          "end": null,
+          "altitudeMode": null,
+          "tessellate": 1,
+          "extrude": 0,
+          "visibility": -1,
+          "drawOrder": null,
+          "icon": null,
+          "placepageUri": null
+        }
+      }, {
+        "arcs": [
+          [1]
+        ],
+        "type": "Polygon",
+        "properties": {
+          "Name": "Plot 1",
+          "description": null,
+          "timestamp": null,
+          "begin": null,
+          "end": null,
+          "altitudeMode": null,
+          "tessellate": 1,
+          "extrude": 0,
+          "visibility": -1,
+          "drawOrder": null,
+          "icon": null,
+          "placepageUri": null
+        }
+      }, {
+        "arcs": [
+          [2]
+        ],
+        "type": "Polygon",
+        "properties": {
+          "Name": "Plot 2",
+          "description": null,
+          "timestamp": null,
+          "begin": null,
+          "end": null,
+          "altitudeMode": null,
+          "tessellate": 1,
+          "extrude": 0,
+          "visibility": -1,
+          "drawOrder": null,
+          "icon": null,
+          "placepageUri": null
+        }
+      }, {
+        "arcs": [
+          [3]
+        ],
+        "type": "Polygon",
+        "properties": {
+          "Name": "Plot 3",
+          "description": null,
+          "timestamp": null,
+          "begin": null,
+          "end": null,
+          "altitudeMode": null,
+          "tessellate": 1,
+          "extrude": 0,
+          "visibility": -1,
+          "drawOrder": null,
+          "icon": null,
+          "placepageUri": null
+        }
+      }, {
+        "arcs": [
+          [4]
+        ],
+        "type": "Polygon",
+        "properties": {
+          "Name": "Plot 4",
+          "description": null,
+          "timestamp": null,
+          "begin": null,
+          "end": null,
+          "altitudeMode": null,
+          "tessellate": 1,
+          "extrude": 0,
+          "visibility": -1,
+          "drawOrder": null,
+          "icon": null,
+          "placepageUri": null
+        }
+      }, {
+        "arcs": [
+          [5]
+        ],
+        "type": "Polygon",
+        "properties": {
+          "Name": "Plot 5",
+          "description": null,
+          "timestamp": null,
+          "begin": null,
+          "end": null,
+          "altitudeMode": null,
+          "tessellate": 1,
+          "extrude": 0,
+          "visibility": -1,
+          "drawOrder": null,
+          "icon": null,
+          "placepageUri": null
+        }
+      }]
+    }
+  }
+}
