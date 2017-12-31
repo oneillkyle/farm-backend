@@ -7,7 +7,7 @@ import * as Datamap from 'datamaps';
 import { feature, mesh } from 'topojson-client';
 // import * as topojson from 'topojson';
 
-import { topo, topo2, topo3, topo4 } from '../topo';
+import { topo, topo2, topo3, topo4, topo5 } from '../topo';
 
 @Injectable()
 export class TreeMapService {
@@ -60,28 +60,21 @@ export class TreeMapService {
     const map = new Datamap({
       element: document.getElementById('container'),
       geographyConfig: {
-        dataJson: topo2
+        dataJson: topo5
       },
       scope: '19585-Siletz-Highway-Siletz-OR',
       height: '570',
-      projection: 'mercator',
-      setProjection: function(element, options) {
+      setProjection: function (element, options) {
         function matrix(a, b, c, d, tx, ty) {
           return d3.geoTransform({
-            point: function(x, y) {
-              // console.log(x, y)
-              // // this.stream.point(x, -y);
-              // console.log(a * x + b * y + tx, c * x + d * y + ty)
+            point: function (x, y) {
               this.stream.point(a * x + b * y + tx, c * x + d * y + ty);
-              // this.stream.point(0.500 * x - 0.866 * y, 0.866 * x + 0.500 * y);
-              // this.stream.point(0.992 * x + 0.125 * y - 6.25, -0.125 * x + 0.992 * y + 0.456);
             }
           });
         }
-        const projection = matrix(.866, .5, -.5, .866, 0, 570);
+        const projection = matrix(1, 0, 0, -1, 130, 570);
         const path = d3.geoPath().projection(projection);
-          // .projection(projection);
-        return {path: path, projection};
+        return { path: path, projection };
       },
     });
     console.log(map);

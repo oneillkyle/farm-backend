@@ -319,26 +319,26 @@ export const topo2 = {
         }
       },
       'geometries': [
-        // {
-        //   'arcs': [
-        //     [0]
-        //   ],
-        //   'type': 'Polygon',
-        //   'properties': {
-        //     'Name': 'Farm',
-        //     'description': null,
-        //     'timestamp': null,
-        //     'begin': null,
-        //     'end': null,
-        //     'altitudeMode': null,
-        //     'tessellate': 1,
-        //     'extrude': 0,
-        //     'visibility': -1,
-        //     'drawOrder': null,
-        //     'icon': null,
-        //     'placepageUri': null
-        //   }
-        // },
+        {
+          'arcs': [
+            [0]
+          ],
+          'type': 'Polygon',
+          'properties': {
+            'Name': 'Farm',
+            'description': null,
+            'timestamp': null,
+            'begin': null,
+            'end': null,
+            'altitudeMode': null,
+            'tessellate': 1,
+            'extrude': 0,
+            'visibility': -1,
+            'drawOrder': null,
+            'icon': null,
+            'placepageUri': null
+          }
+        },
         {
           'arcs': [
             [1]
@@ -870,4 +870,211 @@ export const topo4 = {
       "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
     }
   }
-}
+};
+
+export const topo5 = {
+  "type": "Topology",
+  "arcs": [
+    [
+      [26, 501],
+      [436, -99],
+      [122, -367],
+      [-122, -35],
+      [-166, 150],
+      [-72, 120],
+      [-87, 58],
+      [-137, 167],
+      [26, 6]
+    ],
+    [
+      [31, 498],
+      [191, -46],
+      [46, -140],
+      [-29, -15],
+      [-15, 18],
+      [-5, 7],
+      [-12, 5],
+      [-18, 8],
+      [-11, 10],
+      [-26, -1],
+      [-4, -5],
+      [-14, 2],
+      [-124, 147],
+      [2, 7],
+      [9, 2],
+      [10, 1]
+    ],
+    [
+      [224, 452],
+      [79, -18],
+      [79, -207],
+      [-52, -40],
+      [-8, 36],
+      [-12, 21],
+      [-8, 19],
+      [-15, 41],
+      [-18, 8],
+      [-45, 140]
+    ],
+    [
+      [439, 406],
+      [19, -13],
+      [-3, -41],
+      [-10, -10],
+      [13, -62],
+      [-73, -51],
+      [-81, 202],
+      [4, 4],
+      [131, -29]
+    ],
+    [
+      [452, 81],
+      [-12, 10],
+      [-30, 12],
+      [-25, 21],
+      [-30, 24],
+      [-16, 18],
+      [-8, 21],
+      [103, 70],
+      [29, -22],
+      [10, 12],
+      [25, -31],
+      [55, -116],
+      [-15, -68],
+      [-86, 49]
+    ],
+    [
+      [451, 81],
+      [87, -49],
+      [-1, -4],
+      [-50, -9],
+      [-12, 17],
+      [-7, -1],
+      [-17, 46]
+    ]
+  ],
+  "transform": {
+    "scale": [1, 1],
+    "translate": [-123.91362926749858, 44.770002714112664]
+  },
+  "objects": {
+    "19585-Siletz-Highway-Siletz-OR": {
+      "type": "GeometryCollection",
+      "geometries": [{
+        "arcs": [
+          [0]
+        ],
+        "type": "Polygon",
+        "properties": {
+          "Name": "Farm",
+          "description": null,
+          "timestamp": null,
+          "begin": null,
+          "end": null,
+          "altitudeMode": null,
+          "tessellate": 1,
+          "extrude": 0,
+          "visibility": -1,
+          "drawOrder": null,
+          "icon": null,
+          "placepageUri": null
+        }
+      }, {
+        "arcs": [
+          [1]
+        ],
+        "type": "Polygon",
+        "properties": {
+          "Name": "Plot 1",
+          "description": null,
+          "timestamp": null,
+          "begin": null,
+          "end": null,
+          "altitudeMode": null,
+          "tessellate": 1,
+          "extrude": 0,
+          "visibility": -1,
+          "drawOrder": null,
+          "icon": null,
+          "placepageUri": null
+        }
+      }, {
+        "arcs": [
+          [2]
+        ],
+        "type": "Polygon",
+        "properties": {
+          "Name": "Plot 2",
+          "description": null,
+          "timestamp": null,
+          "begin": null,
+          "end": null,
+          "altitudeMode": null,
+          "tessellate": 1,
+          "extrude": 0,
+          "visibility": -1,
+          "drawOrder": null,
+          "icon": null,
+          "placepageUri": null
+        }
+      }, {
+        "arcs": [
+          [3]
+        ],
+        "type": "Polygon",
+        "properties": {
+          "Name": "Plot 3",
+          "description": null,
+          "timestamp": null,
+          "begin": null,
+          "end": null,
+          "altitudeMode": null,
+          "tessellate": 1,
+          "extrude": 0,
+          "visibility": -1,
+          "drawOrder": null,
+          "icon": null,
+          "placepageUri": null
+        }
+      }, {
+        "arcs": [
+          [4]
+        ],
+        "type": "Polygon",
+        "properties": {
+          "Name": "Plot 4",
+          "description": null,
+          "timestamp": null,
+          "begin": null,
+          "end": null,
+          "altitudeMode": null,
+          "tessellate": 1,
+          "extrude": 0,
+          "visibility": -1,
+          "drawOrder": null,
+          "icon": null,
+          "placepageUri": null
+        }
+      }, {
+        "arcs": [
+          [5]
+        ],
+        "type": "Polygon",
+        "properties": {
+          "Name": "Plot 5",
+          "description": null,
+          "timestamp": null,
+          "begin": null,
+          "end": null,
+          "altitudeMode": null,
+          "tessellate": 1,
+          "extrude": 0,
+          "visibility": -1,
+          "drawOrder": null,
+          "icon": null,
+          "placepageUri": null
+        }
+      }]
+    }
+  }
+};
