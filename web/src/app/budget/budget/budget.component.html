@@ -1,32 +1,32 @@
-<md-expansion-panel [formGroup]="form">
-  <md-expansion-panel-header>
-    <md-panel-title>
+<mat-expansion-panel [formGroup]="form">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
       <span *ngIf="budget.startDate || budget.endDate">{{ budget.startDate | date:'shortDate' }} - {{ budget.endDate | date:'shortDate' }}</span>
       <span *ngIf="!budget.startDate && !budget.endDate">Create New Budget</span>
-    </md-panel-title>
-    <md-panel-description>
+    </mat-panel-title>
+    <mat-panel-description>
       {{ budget.amount | currency:'USD':true }}
       <!-- Type your name and age
-      <md-icon>account_circle</md-icon> -->
-    </md-panel-description>
-  </md-expansion-panel-header>
+      <mat-icon>account_circle</mat-icon> -->
+    </mat-panel-description>
+  </mat-expansion-panel-header>
 
-  <md-form-field>
+  <mat-form-field>
     <input formControlName="startDate" mdInput placeholder="Start Date" [mdDatepicker]="startPicker" (focus)="startPicker.open()" readonly>
-  </md-form-field>
-  <md-datepicker #startPicker></md-datepicker>
+  </mat-form-field>
+  <mat-datepicker #startPicker></mat-datepicker>
 
-  <md-form-field>
+  <mat-form-field>
     <input formControlName="endDate" mdInput placeholder="End Date" [mdDatepicker]="endPicker" (focus)="endPicker.open()" readonly>
-  </md-form-field>
-  <md-datepicker #endPicker></md-datepicker>
+  </mat-form-field>
+  <mat-datepicker #endPicker></mat-datepicker>
 
-  <md-form-field>
+  <mat-form-field>
     <input  formControlName="amount" mdInput type="number" min="1" placeholder="Amount">
-  </md-form-field>
+  </mat-form-field>
 
-  <md-action-row>
-    <button *ngIf="budget.id" md-button color="warn" (click)="delete.emit(budget.id)">Delete</button>
-    <button md-button color="primary" (click)="doSave(form)">Save</button>
-  </md-action-row>
-</md-expansion-panel>
+  <mat-action-row>
+    <button *ngIf="budget.id" mat-button color="warn" (click)="delete.emit(budget.id)">Delete</button>
+    <button mat-button color="primary" (click)="doSave(form)">Save</button>
+  </mat-action-row>
+</mat-expansion-panel>

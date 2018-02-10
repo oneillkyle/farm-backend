@@ -1,0 +1,55 @@
+<mat-card [ngClass]="{'unpublished': currentDate < post.date, 'small-post': truncate}">
+  <mat-card-header>
+    <mat-card-title *ngIf="!editingPost && !noHeader">{{post?.title}}</mat-card-title>
+
+    <mat-card-subtitle *ngIf="!editingPost && !noHeader">{{post?.date | date}}</mat-card-subtitle>
+
+    <div class="header-actions">
+      <button mat-icon-button *ngIf="enableEdit && !newPost &&! editingPost" (click)='editPost()'>
+        <mat-icon aria-label="Edit Post">edit</mat-icon>
+      </button>
+      <button *ngIf="editingPost" (click)="createOrUpdatePost()" mat-icon-button color="primary">
+        <mat-icon>check</mat-icon>
+      </button>
+      <button *ngIf="editingPost" mat-icon-button color="warn" (click)="cancelEdit()">
+        <mat-icon>clear</mat-icon>
+      </button>
+      <button *ngIf="editingPost" mat-icon-button color="warn" (click)="deletePost()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content [ngClass]="{'truncate': truncate && !editingPost}">
+    <form class="post-form" *ngIf="editingPost" #postForm="ngForm">
+
+      <div>
+        <mat-input-container style="width: 100%">
+          <input matInput type="text" [(ngModel)]="post.title" placeholder="Title" name="title" width="">
+        </mat-input-container>
+      </div>
+      <div>
+        <mat-input-container style="width: 100%">
+          <input matInput type="text" [(ngModel)]="formattedDate" placeholder="Publish Date" name="date">
+        </mat-input-container>
+      </div>
+      <textarea matInput matTextareaAutosize matAutosizeMinRows="2" [(ngModel)]="post.body" name="postBody"></textarea>
+    </form>
+    <markdown [data]="post.body"></markdown>
+
+  </mat-card-content>
+
+  <mat-card-actions class="post-actions" *ngIf="!newPost" align="end">
+    <a *ngIf="truncate" mat-button [routerLink]="['/', post.key]" color="primary">Continue Reading
+      <mat-icon>arrow_forward</mat-icon>
+    </a>
+    <a *ngIf="!truncate" mat-button routerLink="/" color="primary">
+      <mat-icon>arrow_backward</mat-icon> Back to Posts</a>
+    <button *ngIf="morePosts" (click)="loadMorePosts()" mat-raised-button color="primary">
+      Load more posts
+    </button>
+  </mat-card-actions>
+
+  <mat-card-footer></mat-card-footer>
+
+</mat-card>

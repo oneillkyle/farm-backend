@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { MdIconRegistry } from '@angular/material';
+import { MarkdownModule } from 'ngx-md';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -37,9 +37,10 @@ import { FarmService, BudgetService } from './shared/services';
     EffectsModule.forRoot([
       FarmEffects,
       BudgetEffects
-    ])
+    ]),
+    MarkdownModule.forRoot()
   ],
-  providers: [MdIconRegistry, FarmService, BudgetService],
+  providers: [FarmService, BudgetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
