@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { select, geoPath, GeoPermissibleObjects, geoEquirectangular } from 'd3';
 import * as d3 from 'd3-geo';
 import * as Datamap from 'datamaps';
-import { feature, mesh } from 'topojson-client';
+// import { feature, mesh } from 'topojson-client';
 // import * as topojson from 'topojson';
 
 import { topo, topo2, topo3, topo4, topo5 } from '../topo';
@@ -17,44 +17,44 @@ export class TreeMapService {
   // private format = d3.format(',d');
   constructor() { }
 
-  createTopo() {
-    const width = 960;
-    const height = 500;
-    // const svg = select('svg');
+  // createTopo() {
+  //   const width = 960;
+  //   const height = 500;
+  //   // const svg = select('svg');
 
-    // const projection = d3.geoMercator()
-    //   .scale(1000)
-    //   // .scale(100)
-    //   .translate([width / 2, height / 2])
+  //   // const projection = d3.geoMercator()
+  //   //   .scale(1000)
+  //   //   // .scale(100)
+  //   //   .translate([width / 2, height / 2])
 
-    // const path = d3.geoPath()
-    //   .projection(projection);
+  //   // const path = d3.geoPath()
+  //   //   .projection(projection);
 
-    // const feat = topo3;
-    // svg.append('path')
-    //   .attr('d', path(topo3))
+  //   // const feat = topo3;
+  //   // svg.append('path')
+  //   //   .attr('d', path(topo3))
 
-    // // const projection = d3.geoAlbers()
-    // // .translate([-123.91415884734998, 44.77358071275885])
-    // // .scale(100000)
-    // // .center([-123, 40.70]);
+  //   // // const projection = d3.geoAlbers()
+  //   // // .translate([-123.91415884734998, 44.77358071275885])
+  //   // // .scale(100000)
+  //   // // .center([-123, 40.70]);
 
-    // // const projection = d3.geoercator()
-    // //   .scale(1500)
-    // //   // Center the Map in Colombia
-    // //   .center([-74, 4.5])
-    // //   .translate([width / 2, height / 2]);
-    const path = d3.geoPath();
+  //   // // const projection = d3.geoercator()
+  //   // //   .scale(1500)
+  //   // //   // Center the Map in Colombia
+  //   // //   .center([-74, 4.5])
+  //   // //   .translate([width / 2, height / 2]);
+  //   const path = d3.geoPath();
 
-    const svg = select('svg');
-    const geojson = feature(topo4, topo4.objects['test_qgis']);
-    console.log('geojson', geojson)
+  //   const svg = select('svg');
+  //   const geojson = feature(topo4, topo4.objects['test_qgis']);
+  //   console.log('geojson', geojson)
 
-    svg.selectAll('path')
-      .data(geojson.features)
-      .enter().append('path')
-      .attr('d', path);
-  }
+  //   svg.selectAll('path')
+  //     .data(geojson.features)
+  //     .enter().append('path')
+  //     .attr('d', path);
+  // }
 
   createDataMap() {
     const map = new Datamap({
