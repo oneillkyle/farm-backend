@@ -8,8 +8,6 @@ import { MarkdownModule } from 'ngx-md';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import 'hammerjs';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 import { SharedModule } from './shared';

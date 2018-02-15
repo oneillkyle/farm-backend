@@ -36,3 +36,10 @@ export class Post {
     public updated?: string
   ) {}
 }
+
+export class PayloadAction {
+  constructor(
+    public type: string,
+    public payload: any
+  ) {}
+}
