@@ -27,16 +27,6 @@ export class Log {
   error?: boolean;
 }
 
-export class Post {
-  constructor(
-    public id?: number,
-    public title?: string,
-    public description?: string,
-    public created?: string,
-    public updated?: string
-  ) {}
-}
-
 export class PayloadAction {
   constructor(
     public type: string,

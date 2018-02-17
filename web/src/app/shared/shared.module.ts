@@ -86,19 +86,23 @@ const MATERIAL_MODULES = [
   PortalModule,
 ];
 
+import { MarkdownModule } from 'ngx-md';
+
 @NgModule({
   imports: [
     CommonModule,
     MATERIAL_MODULES,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    MarkdownModule
   ],
   exports: [
     MATERIAL_MODULES,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    MarkdownModule
   ],
   declarations: [],
   providers: [

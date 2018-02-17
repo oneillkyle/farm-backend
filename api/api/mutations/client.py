@@ -173,7 +173,7 @@ class UpdateTag(graphene.Mutation):
         tag = Tag.objects.get(id=id)
 
         tag.title = args.get('title')
-        tag.icon = args.get('icon')=
+        tag.icon = args.get('icon')
         tag.save()
         return CreateTag(tag=tag)
 
