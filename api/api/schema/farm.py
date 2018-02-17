@@ -3,7 +3,7 @@ import graphene
 from graphene_django.types import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
 
-from .models import (Farm, Budget, Plot)
+from ..models import (Farm, Budget, Plot)
 
 
 class FarmType(DjangoObjectType):
