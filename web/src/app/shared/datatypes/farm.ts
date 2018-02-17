@@ -21,6 +21,23 @@ export class FarmReturn {
   }
 }
 
+export class BudgetReturn {
+  data: {
+    allBudgets?: {
+      edges: Array<{ node: Budget }>
+    },
+    createBudget?: {
+      budget: Budget
+    },
+    updateBudget?: {
+      budget: Budget
+    },
+    deleteBudget?: {
+      id: string
+    }
+  }
+}
+
 export class Log {
   message?: string;
   code?: number;

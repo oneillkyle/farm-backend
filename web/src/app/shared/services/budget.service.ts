@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+
 import { Observable } from 'rxjs/Observable';
 
-import { Budget } from '../datatypes';
+import { Budget, BudgetReturn } from '../datatypes';
 import { getCurrentCsrfHeaders, formatDate } from './utils';
 
 @Injectable()
 export class BudgetService {
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getBudgets(): Observable<Budget[]> {
     const q = `
@@ -23,8 +24,8 @@ export class BudgetService {
       }
     `
     return this.http.get('/api/graphql?query=' + q)
-      .map((response) => {
-        return response.json().data.allFarms.edges.map((edge) => edge.node);
+      .map((response: BudgetReturn) => {
+        return response.data.allBudgets.edges.map((edge) => edge.node);
       });
   }
 
@@ -41,8 +42,8 @@ export class BudgetService {
       }
     `;
     return this.http.get('/api/graphql?query=' + q)
-      .map((response) => {
-        const edges = response.json().data.allFarms.edges;
+      .map((response: BudgetReturn) => {
+        const edges = response.data.allBudgets.edges;
 
         return edges.length ? edges[0].node : null;
       });
@@ -67,9 +68,9 @@ export class BudgetService {
       }
     `;
 
-    return this.http.post('/api/graphql', {query: q}, {headers: getCurrentCsrfHeaders()})
-      .map((response) => {
-        return response.json().data.createBudget.budget;
+    return this.http.post('/api/graphql', {query: q})
+      .map((response: BudgetReturn) => {
+        return response.data.createBudget.budget;
       });
   }
 
@@ -92,9 +93,9 @@ export class BudgetService {
       }
     `;
 
-    return this.http.post('/api/graphql', {query: q}, {headers: getCurrentCsrfHeaders()})
-      .map((response) => {
-        return response.json().data.updateBudget.budget;
+    return this.http.post('/api/graphql', {query: q})
+      .map((response: BudgetReturn) => {
+        return response.data.updateBudget.budget;
       });
   }
 
@@ -107,9 +108,9 @@ export class BudgetService {
       }
     `;
 
-    return this.http.post('/api/graphql', {query: q}, {headers: getCurrentCsrfHeaders()})
-      .map((response) => {
-        return response.json().data.deleteBudget.id;
+    return this.http.post('/api/graphql', {query: q})
+      .map((response: BudgetReturn) => {
+        return response.data.deleteBudget.id;
       });
   }
 }
