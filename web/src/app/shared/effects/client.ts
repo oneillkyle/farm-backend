@@ -12,6 +12,17 @@ import { PayloadAction, Section, Post, Tag } from '../datatypes';
 
 @Injectable()
 export class ClientEffects {
+  @Effect()
+  selectSections$: Observable<Action> = this.actions$
+    .ofType(clientActions.SELECT_SECTIONS)
+    .pipe(
+      switchMap(() => {
+
+        return this.clientService.getSections()
+          .map(sections => new clientActions.SelectSectionsCompleteAction(sections))
+          .catch(() => of(new clientActions.SelectSectionsFailAction(null)));
+      })
+    );
 
   @Effect()
   selectSection$: Observable<Action> = this.actions$

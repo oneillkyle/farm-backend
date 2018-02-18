@@ -10,6 +10,35 @@ export class ClientService {
 
   constructor(private http: HttpClient) { }
 
+  getSections(): Observable<Section[]> {
+    const q = `
+      query{
+        allSections() {
+          edges {
+            node{
+              id
+              title
+              description
+              posts {
+                edges {
+                  node {
+                    id
+                    title
+                    description
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
+    return this.http.get('/api/graphql?query=' + q)
+      .map((response: ClientReturn) => {
+        return response.data.allSections.edges.map((edge) => edge.node);
+      });
+  }
+
   getSection(name: string): Observable<Section> {
     const q = `
       query{

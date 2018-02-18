@@ -15,15 +15,17 @@ const initialState: State = {
 
 export function reducer(state = initialState, action: farmActions.FarmActions | budgetActions.BudgetActions): State {
   switch (action.type) {
-    case farmActions.SEARCH_COMPLETE: {}
+    case farmActions.SEARCH_COMPLETE: {
       return Object.assign(state, {
         farms: action.payload,
       });
+    }
 
-    case farmActions.SELECT_COMPLETE:
+    case farmActions.SELECT_COMPLETE: {
       return Object.assign(state, {
         farm: action.payload,
       });
+    }
 
     case budgetActions.CREATE_COMPLETE: {
       const newState =  Object.assign({}, state);
@@ -37,14 +39,15 @@ export function reducer(state = initialState, action: farmActions.FarmActions | 
       newState.farm.budgets.splice(index, 1, action.payload);
       return newState;
     }
-      
+
     case budgetActions.DELETE_COMPLETE: {
       const newState =  Object.assign({}, state);
       newState.farm.budgets = [...newState.farm.budgets.filter(budget => budget.id !== action.payload)];
       return newState;
     }
 
-    default:
+    default: {
       return state;
+    }
   }
 }

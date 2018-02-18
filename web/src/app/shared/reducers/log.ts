@@ -6,10 +6,12 @@ const initialState: Log = {};
 export function reducer(state = initialState, action: stateActions.LogActions): Log {
   switch (action.type) {
     case stateActions.ERROR:
-    case stateActions.SUCCESS:
+    case stateActions.SUCCESS: {
       return Object.assign(state, action.payload);
+    }
 
-    default:
+    default: {
       return state;
+    }
   }
 }
