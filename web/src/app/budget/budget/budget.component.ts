@@ -34,7 +34,7 @@ export class BudgetComponent implements OnInit {
   doSave({value, valid}) {
     if (valid) {
       this.save.emit(
-        Object.assign({}, {id: get(this.budget, 'id')} ,value)
+        Object.assign({}, {id: get(this.budget, 'id')}, value)
       );
     }
   }

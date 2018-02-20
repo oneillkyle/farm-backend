@@ -19,6 +19,8 @@ export class ClientService {
               id
               title
               description
+              allowsPosts
+              image
               posts {
                 edges {
                   node {
@@ -48,6 +50,8 @@ export class ClientService {
               id
               title
               description
+              allowsPosts
+              image
               posts {
                 edges {
                   node {
@@ -77,14 +81,14 @@ export class ClientService {
           title: "${section.title}"
           description: "${section.description}"
           image: "${section.image}"
-          allows_posts: "${section.allows_posts}"
+          allowsPosts: "${section.allowsPosts}"
         ) {
           section {
             id
             title
             description
             image
-            allows_posts
+            allowsPosts
           }
         }
       }

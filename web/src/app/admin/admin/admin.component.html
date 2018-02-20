@@ -1,1 +1,6 @@
-Admin!
+<mat-accordion class="example-headers-align">
+  <ng-container *ngFor="let section of sections | async">
+    <app-section-admin [section]="section" (save)="saveSection($event)" (delete)="deleteSection($event)"></app-section-admin>
+  </ng-container>
+  <app-section-admin (save)="addSection($event)"></app-section-admin>
+</mat-accordion>

@@ -8,6 +8,7 @@ import { of } from 'rxjs/observable/of';
 
 import { ClientService } from '../services';
 import * as clientActions from '../actions/client';
+import * as logActions from '../actions/log';
 import { PayloadAction, Section, Post, Tag } from '../datatypes';
 
 @Injectable()
@@ -20,7 +21,7 @@ export class ClientEffects {
 
         return this.clientService.getSections()
           .map(sections => new clientActions.SelectSectionsCompleteAction(sections))
-          .catch(() => of(new clientActions.SelectSectionsFailAction(null)));
+          .catch(() => of(new logActions.ErrorAction({error: true})));
       })
     );
 
@@ -36,7 +37,7 @@ export class ClientEffects {
 
         return this.clientService.getSection(query)
           .map(section => new clientActions.SelectSectionCompleteAction(section))
-          .catch(() => of(new clientActions.SelectSectionFailAction(null)));
+          .catch(() => of(new logActions.ErrorAction({error: true})));
       })
     );
 
@@ -52,7 +53,7 @@ export class ClientEffects {
 
         return this.clientService.createSection(section)
           .map(newSection => new clientActions.CreateSectionCompleteAction(newSection))
-          .catch(() => of(new clientActions.CreateSectionFailAction(null)));
+          .catch(() => of(new logActions.ErrorAction({error: true})));
       })
     );
 

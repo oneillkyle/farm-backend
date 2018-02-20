@@ -1,0 +1,33 @@
+<mat-expansion-panel [formGroup]="form">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <span *ngIf="section.id">{{ section.title }}</span>
+      <span *ngIf="!section.id">Create New Section</span>
+    </mat-panel-title>
+    <mat-panel-description>
+      <!-- {{ section.amount | currency:'USD':true }} -->
+      <!-- Type your name and age
+      <mat-icon>account_circle</mat-icon> -->
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <mat-form-field>
+    <input formControlName="title" matInput placeholder="Title">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input formControlName="image" matInput placeholder="Image Url">
+  </mat-form-field>
+
+  <mat-checkbox formControlName="allowsPosts">Allows Posts</mat-checkbox>
+  
+  <mat-form-field style="width: 100%">
+    <textarea matInput matTextareaAutosize matAutosizeMinRows="2" formControlName="description" placeholder="Description"></textarea>
+  </mat-form-field>
+  <markdown [data]="section.description"></markdown>
+
+  <mat-action-row>
+    <button *ngIf="section.id" mat-button color="warn" (click)="delete.emit(section.id)">Delete</button>
+    <button mat-button color="primary" (click)="doSave(form)">Save</button>
+  </mat-action-row>
+</mat-expansion-panel>

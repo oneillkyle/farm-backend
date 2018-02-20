@@ -27,9 +27,13 @@ export const getFarms = (state: AppState) => state.farm.farms
 
 export const getFarm = (state: AppState) => state.farm.farm
 export const getLog = (state: AppState) => state.log
+
 export const getClient = (state: AppState) => state.client
+export const getSections = (state: AppState) => state.client.sections
+export const getSection = (state: AppState) => state.client.section
+export const getPosts = (state: AppState) => state.client.posts
+export const getPost = (state: AppState) => state.client.post
 
 export const getBudgets = (state: AppState) => {
   return get(state, 'farm.farm.budgets', []);
 }
-

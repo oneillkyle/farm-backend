@@ -14,6 +14,7 @@ import * as clientActions from '../../shared/actions/client';
   styleUrls: []
 })
 export class AdminComponent implements OnInit {
+  sections: Observable<Section[]>;
 
   constructor(
     private store: Store<AppState>,
@@ -22,6 +23,16 @@ export class AdminComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.sections = this.store.select(fromRoot.getSections);
   }
 
+  saveSection(section) {
+    console.log(section);
+  }
+  addSection(section) {
+    console.log(section);
+  }
+  deleteSection(section) {
+    console.log(section);
+  }
 }

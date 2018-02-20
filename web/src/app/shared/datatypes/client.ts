@@ -4,7 +4,7 @@ export class Section {
     public title?: string,
     public description?: string,
     public image?: string,
-    public allows_posts?: boolean,
+    public allowsPosts?: boolean,
     public created?: string,
     public updated?: string,
     public posts?: Post[]

@@ -14,8 +14,7 @@ import { AppRoutingModule } from './app.routing';
 import { SharedModule, CsrfInterceptor, CsrfService  } from './shared';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
-import { FarmEffects } from './shared/effects';
-import { BudgetEffects } from './shared/effects';
+import { FarmEffects, BudgetEffects, ClientEffects } from './shared/effects';
 import { reducers } from './shared/reducers';
 
 import { FarmService, BudgetService, ClientService } from './shared/services';
@@ -35,7 +34,8 @@ import { FarmService, BudgetService, ClientService } from './shared/services';
     }),
     EffectsModule.forRoot([
       FarmEffects,
-      BudgetEffects
+      BudgetEffects,
+      ClientEffects
     ]),
     MarkdownModule.forRoot()
   ],
