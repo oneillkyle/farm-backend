@@ -45,6 +45,9 @@ export class ClientReturn {
     },
     deleteSection?: {
       id: string
+    },
+    updateSection?: {
+      section: Section
     }
   }
 }

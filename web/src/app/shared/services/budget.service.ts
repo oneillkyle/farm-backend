@@ -31,7 +31,7 @@ export class BudgetService {
 
   getBudget(id: string): Observable<Budget> {
     const q = `
-      query{
+      query {
         allBudgets(id: "${id}") {
           edges {
             node{

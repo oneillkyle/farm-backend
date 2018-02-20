@@ -27,12 +27,14 @@ export class SectionAdminComponent implements OnInit {
     this.form = this.fb.group({
       title: [this.section.title, Validators.required],
       description: [this.section.description, Validators.required],
-      image: [this.section.image, Validators.required],
-      allowsPosts: [this.section.allowsPosts, Validators.required]
+      image: [this.section.image],
+      allowsPosts: [this.section.allowsPosts || false, Validators.required]
     });
   }
 
   doSave({value, valid}) {
+    console.log(value);
+    console.log(valid);
     if (valid) {
       this.save.emit(
         Object.assign({}, {id: get(this.section, 'id')}, value)

@@ -27,9 +27,11 @@ export class AdminComponent implements OnInit {
   }
 
   saveSection(section) {
+    this.store.dispatch(new clientActions.UpdateSectionAction(section));
     console.log(section);
   }
   addSection(section) {
+    this.store.dispatch(new clientActions.CreateSectionAction(section));
     console.log(section);
   }
   deleteSection(section) {

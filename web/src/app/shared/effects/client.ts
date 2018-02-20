@@ -57,5 +57,21 @@ export class ClientEffects {
       })
     );
 
+  @Effect()
+  updateSection$: Observable<Action> = this.actions$
+    .ofType(clientActions.UPDATE_SECTION)
+    .pipe(
+      map((action: PayloadAction) => action.payload),
+      switchMap((section: Section) => {
+        if (!section) {
+          return empty();
+        }
+
+        return this.clientService.updateSection(section)
+          .map(newSection => new clientActions.UpdateSectionCompleteAction(newSection))
+          .catch(() => of(new logActions.ErrorAction({error: true})));
+      })
+    );
+
     constructor(private actions$: Actions, private clientService: ClientService) { }
 }

@@ -12,8 +12,8 @@ export class ClientService {
 
   getSections(): Observable<Section[]> {
     const q = `
-      query{
-        allSections() {
+      query {
+        allSections {
           edges {
             node{
               id
@@ -43,7 +43,7 @@ export class ClientService {
 
   getSection(name: string): Observable<Section> {
     const q = `
-      query{
+      query {
         allSections(name: "${name}") {
           edges {
             node{
@@ -75,13 +75,14 @@ export class ClientService {
   }
 
   createSection(section: Section): Observable<Section> {
+    console.log(section);
     const q = `
       mutation sectionMutation {
         createSection(
           title: "${section.title}"
           description: "${section.description}"
-          image: "${section.image}"
-          allowsPosts: "${section.allowsPosts}"
+          image: "${section.image || ''}"
+          allowsPosts: ${section.allowsPosts}
         ) {
           section {
             id
@@ -100,30 +101,32 @@ export class ClientService {
       });
   }
 
-  // updateSection(section: Section): Observable<Section> {
-  //   const q = `
-  //     mutation budgetMutation {
-  //       updateBudget(
-  //         id: "${budget.id}",
-  //         amount: ${budget.amount},
-  //         startDate: "${budget.startDate}",
-  //         endDate: "${budget.endDate}"
-  //       ) {
-  //         budget {
-  //           id
-  //           amount
-  //           startDate
-  //           endDate
-  //         }
-  //       }
-  //     }
-  //   `;
+  updateSection(section: Section): Observable<Section> {
+    const q = `
+      mutation sectionMutation {
+        updateSection(
+          id: "${section.id}",
+          title: "${section.title}"
+          description: "${section.description}"
+          image: "${section.image || ''}"
+          allowsPosts: ${section.allowsPosts}
+        ) {
+          section {
+            id
+            title
+            description
+            image
+            allowsPosts
+          }
+        }
+      }
+    `;
 
-  //   return this.http.post('/api/graphql', {query: q}, {headers: getCurrentCsrfHeaders()})
-  //     .map((response) => {
-  //       return response.json().data.updateBudget.budget;
-  //     });
-  // }
+    return this.http.post('/api/graphql', {query: q})
+      .map((response: ClientReturn) => {
+        return response.data.updateSection.section;
+      });
+  }
 
   // deleteBudget(id: string): Observable<string> {
   //   const q = `

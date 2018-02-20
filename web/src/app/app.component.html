@@ -4,13 +4,10 @@
       <div class="flex-header-row">
         <h1 class="flex-title">{{title}}</h1>
         <div class="flex-menu">
-          <span>
-            <mat-icon class="example-icon">favorite</mat-icon> Home</span>
-          <span>
-            <mat-icon class="example-icon">delete</mat-icon> About</span>
+          <a mat-button routerLink="/about">About</a>
+          <a mat-button routerLink="/admin">Admin</a>
         </div>
       </div>
-
     </mat-toolbar>
     <div class="image"></div>
   </header>
