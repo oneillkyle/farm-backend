@@ -11,16 +11,11 @@ const appRoutes: Routes = [
     loadChildren: 'app/farm/farm.module#FarmModule'
   },
   {
-    path: 'about',
-    loadChildren: 'app/section/section.module#SectionModule'
-  },
-  {
     path: 'admin',
     loadChildren: 'app/admin/admin.module#AdminModule'
   },
   {
     path: '',
-    pathMatch: 'full',
     loadChildren: 'app/section/section.module#SectionModule'
   },
   { path: '**', component: PageNotFoundComponent }

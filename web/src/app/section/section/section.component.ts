@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+import { map, mergeMap, withLatestFrom, filter, skipWhile } from 'rxjs/operators';
 
 import { Section, AppState } from '../../shared'
 import * as fromRoot from '../../shared/reducers';
@@ -13,6 +14,7 @@ import * as farmActions from '../../shared/actions/farm';
   styleUrls: ['./section.component.scss']
 })
 export class SectionComponent implements OnInit {
+  section: Observable<Section>;
 
   constructor(
     private store: Store<AppState>,
@@ -21,6 +23,12 @@ export class SectionComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.section = this.store.select(fromRoot.getSections).pipe(
+      withLatestFrom(this.route.data),
+      map(([sections, {title}]) => {
+        return sections.find(section => section.title === title);
+      })
+    );
   }
 
 }

@@ -1,1 +1,9 @@
-Section!
+{{ section | async | json }}
+
+<h2>{{ (section | async)?.title }}</h2>
+<markdown>{{ (section | async)?.description }}</markdown>
+
+<app-post *ngFor="let edge of (section | async)?.posts.edges"
+  [post]="edge.node">
+
+</app-post>

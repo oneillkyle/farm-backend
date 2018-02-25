@@ -13,7 +13,7 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return "{0}.".format(self.title)
 
     class Meta:
@@ -31,7 +31,7 @@ class Section(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return "{0}.".format(self.title)
 
     class Meta:
@@ -46,7 +46,7 @@ class Tag(models.Model):
     icon = models.CharField(max_length=50, blank=True)
     created = models.DateTimeField(auto_now_add=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return "{0}.".format(self.title)
 
     class Meta:

@@ -7,7 +7,7 @@ export class Section {
     public allowsPosts?: boolean,
     public created?: string,
     public updated?: string,
-    public posts?: Post[]
+    public posts?: {edges: {node: Post}[]}
   ) {}
 }
 
