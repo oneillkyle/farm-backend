@@ -27,6 +27,8 @@ export class ClientService {
                     id
                     title
                     description
+                    image
+                    publishDate
                   }
                 }
               }
@@ -75,7 +77,6 @@ export class ClientService {
   }
 
   createSection(section: Section): Observable<Section> {
-    console.log(section);
     const q = `
       mutation sectionMutation {
         createSection(
@@ -142,6 +143,81 @@ export class ClientService {
   //       return response.json().data.deleteBudget.id;
   //     });
   // }
+
+  getAllSectionPosts(sectionTitle: string): Observable<Post[]> {
+    const q = `
+      query {
+        allPosts(section_Title:"${sectionTitle}") {
+          edges {
+            node {
+              id
+              title
+              description
+              image
+              publishDate
+            }
+          }
+        }
+      }
+    `;
+    return this.http.get('/api/graphql?query=' + q)
+      .map((response: ClientReturn) => {
+        return response.data.allPosts.edges.map((edge) => edge.node);
+      });
+  }
+
+  createPost(post: Post): Observable<Post> {
+    const q = `
+      mutation postMutation {
+        createPost(
+          title: "${post.title}"
+          description: "${post.description}"
+          image: "${post.image || ''}"
+          publishDate: "${post.publishDate}"
+        ) {
+          post {
+            id
+            title
+            description
+            image
+            publishDate
+          }
+        }
+      }
+    `;
+
+    return this.http.post('/api/graphql', {query: q})
+      .map((response: ClientReturn) => {
+        return response.data.createPost.post;
+      });
+  }
+
+  updatePost(post: Post): Observable<Post> {
+    const q = `
+      mutation postMutation {
+        updatePost(
+          id: "${post.id}",
+          title: "${post.title}"
+          description: "${post.description}"
+          image: "${post.image || ''}"
+          publishDate: "${post.publishDate}"
+        ) {
+          post {
+            id
+            title
+            description
+            image
+            publishDate
+          }
+        }
+      }
+    `;
+
+    return this.http.post('/api/graphql', {query: q})
+      .map((response: ClientReturn) => {
+        return response.data.updatePost.post;
+      });
+  }
 
   formatSection(section) {
     if (!section) { return section; }

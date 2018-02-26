@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { SectionComponent } from './section/section.component';
-import { PostComponent } from './post/post.component';
+import { PostComponent } from '../shared/components/post/post.component';
 
 const sectionRoutes: Routes = [
   {

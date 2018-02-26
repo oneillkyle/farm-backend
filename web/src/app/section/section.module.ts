@@ -4,7 +4,6 @@ import { SharedModule } from '../shared';
 
 import { SectionRoutingModule } from './section.routing';
 import { SectionComponent } from './section/section.component';
-import { PostComponent } from './post/post.component';
 
 @NgModule({
   imports: [
@@ -12,7 +11,7 @@ import { PostComponent } from './post/post.component';
     SharedModule,
     SectionRoutingModule
   ],
-  declarations: [SectionComponent, PostComponent],
-  exports: [SectionComponent, PostComponent]
+  declarations: [SectionComponent],
+  exports: [SectionComponent]
 })
 export class SectionModule { }

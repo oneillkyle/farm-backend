@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, EventEmitter, Input, Output } from '@angular/core';
-import { Post } from '../../shared/datatypes';
+import { Post } from '../../datatypes';
 import { get, omit } from 'lodash';
 
 @Component({

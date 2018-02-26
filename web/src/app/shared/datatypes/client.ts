@@ -19,7 +19,7 @@ export class Post {
     public slug?: string,
     public section?: number,
     public image?: string,
-    public published?: boolean,
+    public publishDate?: boolean,
     public tags?: Tag[],
     public created?: string,
     public updated?: string
@@ -48,6 +48,18 @@ export class ClientReturn {
     },
     updateSection?: {
       section: Section
-    }
+    },
+    allPosts?: {
+      edges: Array<{ node: Post }>
+    },
+    createPost?: {
+      post: Post
+    },
+    deletePost?: {
+      id: string
+    },
+    updatePost?: {
+      post: Post
+    },
   }
 }

@@ -73,5 +73,18 @@ export class ClientEffects {
       })
     );
 
+  @Effect()
+  selectPosts$: Observable<Action> = this.actions$
+    .ofType(clientActions.SELECT_POSTS)
+    .pipe(
+      map((action: PayloadAction) => action.payload),
+      switchMap((title: string) => {
+
+        return this.clientService.getAllSectionPosts(title)
+          .map(posts => new clientActions.SelectPostsCompleteAction(posts))
+          .catch(() => of(new logActions.ErrorAction({error: true})));
+      })
+    );
+
     constructor(private actions$: Actions, private clientService: ClientService) { }
 }

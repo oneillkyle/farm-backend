@@ -5,6 +5,7 @@ import { SharedModule } from '../shared';
 import { AdminRoutingModule } from './admin.routing';
 import { AdminComponent } from './admin/admin.component';
 import { SectionAdminComponent } from './section-admin/section-admin.component';
+import { PostAdminComponent } from './post-admin/post-admin.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,6 @@ import { SectionAdminComponent } from './section-admin/section-admin.component';
     SharedModule,
     AdminRoutingModule
   ],
-  declarations: [AdminComponent, SectionAdminComponent]
+  declarations: [AdminComponent, SectionAdminComponent, PostAdminComponent]
 })
 export class AdminModule { }

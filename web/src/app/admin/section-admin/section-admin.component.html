@@ -1,4 +1,4 @@
-<mat-expansion-panel [formGroup]="form">
+<mat-expansion-panel [formGroup]="form" (opened)="opened.emit(section)">
   <mat-expansion-panel-header>
     <mat-panel-title>
       <span *ngIf="section.id">{{ section.title }}</span>
@@ -11,20 +11,31 @@
     </mat-panel-description>
   </mat-expansion-panel-header>
 
-  <mat-form-field>
-    <input formControlName="title" matInput placeholder="Title">
-  </mat-form-field>
-
-  <mat-form-field>
-    <input formControlName="image" matInput placeholder="Image Url">
-  </mat-form-field>
-
-  <mat-checkbox formControlName="allowsPosts">Allows Posts</mat-checkbox>
+  <ng-template matExpansionPanelContent>
+    <mat-form-field>
+      <input formControlName="title" matInput placeholder="Title">
+    </mat-form-field>
   
-  <mat-form-field style="width: 100%">
-    <textarea matInput matTextareaAutosize matAutosizeMinRows="2" formControlName="description" placeholder="Description"></textarea>
-  </mat-form-field>
-  <markdown [data]="section.description"></markdown>
+    <mat-form-field>
+      <input formControlName="image" matInput placeholder="Image Url">
+    </mat-form-field>
+  
+    <mat-checkbox formControlName="allowsPosts">Allows Posts</mat-checkbox>
+    
+    <mat-form-field style="width: 100%">
+      <textarea matInput matTextareaAutosize matAutosizeMinRows="2" formControlName="description" placeholder="Description"></textarea>
+    </mat-form-field>
+    <markdown [data]="section.description"></markdown>
+  
+    <mat-accordion *ngIf="posts && section?.allowsPosts">
+      <app-post-admin (save)="doSavePost($event)">
+      </app-post-admin>
+      <ng-container *ngFor="let post of posts">
+        <app-post-admin [post]="post" (save)="doSavePost($event)" (delete)="deletePost.emit($event)">
+        </app-post-admin>
+      </ng-container>
+    </mat-accordion>
+  </ng-template>
 
   <mat-action-row>
     <button *ngIf="section.id" mat-button color="warn" (click)="delete.emit(section.id)">Delete</button>

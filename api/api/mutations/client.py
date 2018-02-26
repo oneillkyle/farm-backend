@@ -75,7 +75,7 @@ class CreatePost(graphene.Mutation):
         description = graphene.String(required=True)
         section = graphene.String(required=True)
         image = graphene.String(required=True)
-        published = graphene.Boolean(required=True, default_value=True)
+        publish_date = graphene.types.datetime.DateTime(required=True)
         tags = graphene.List(graphene.String)
 
     post = graphene.Field(PostType)
@@ -90,7 +90,7 @@ class CreatePost(graphene.Mutation):
             slug=slugify(args.get('title')),
             section=section,
             image=args.get('image'),
-            published=args.get('published'),
+            publish_date=args.get('publish_date'),
         )
         post.tags.set(tags)
         return CreatePost(post=post)
@@ -104,7 +104,7 @@ class UpdatePost(graphene.Mutation):
         description = graphene.String(required=True)
         section = graphene.String(required=True)
         image = graphene.String(required=True)
-        published = graphene.Boolean(required=True, default_value=True)
+        publish_date = graphene.types.datetime.DateTime(required=True)
         tags = graphene.List(graphene.String)
 
     post = graphene.Field(PostType)
@@ -119,7 +119,7 @@ class UpdatePost(graphene.Mutation):
         post.title = args.get('title')
         post.description = args.get('description')
         post.image = args.get('image')
-        post.published = args.get('published')
+        post.publish_date = args.get('publish_date')
         post.section = section
         post.save()
         post.tags.set(tags)

@@ -63,6 +63,17 @@ export function reducer(state = initialState, action: clientActions.ClientAction
       });
     }
 
+    case clientActions.SELECT_POSTS: {
+      return Object.assign(state, {
+        posts: []
+      });
+    }
+    case clientActions.SELECT_POSTS_COMPLETE: {
+      return Object.assign(state, {
+        posts: action.payload
+      });
+    }
+
     // case clientActions.DELETE_SECTION_COMPLETE: {
     //   return Object.assign(state, {
     //     sections: [...state.sections.filter(section => section.id !== action.payload)]

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 import {
   MatAutocompleteModule,
@@ -88,6 +89,8 @@ const MATERIAL_MODULES = [
 
 import { MarkdownModule } from 'ngx-md';
 
+import { PostComponent } from './components';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -95,16 +98,18 @@ import { MarkdownModule } from 'ngx-md';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MarkdownModule
+    MarkdownModule,
+    RouterModule
   ],
   exports: [
     MATERIAL_MODULES,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MarkdownModule
+    MarkdownModule,
+    PostComponent
   ],
-  declarations: [],
+  declarations: [PostComponent],
   providers: [
   ]
 })

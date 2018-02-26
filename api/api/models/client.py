@@ -8,8 +8,8 @@ class Post(models.Model):
     section = models.ForeignKey(
         'Section', related_name='posts', blank=True, null=True)
     image = models.URLField(blank=True)
-    published = models.BooleanField(default=True)
     tags = models.ManyToManyField('Tag', related_name='posts')
+    publish_date = models.DateField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

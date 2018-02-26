@@ -4,6 +4,14 @@
 <markdown>{{ (section | async)?.description }}</markdown>
 
 <app-post *ngFor="let edge of (section | async)?.posts.edges"
-  [post]="edge.node">
-
+  [post]="edge.node"
+  [truncate]="true">
 </app-post>
+
+
+<!-- (onPostSave)="onPostSave(edge.node)"
+(onDeletePost)="onDeletePost(edge.node)"
+(onCancelEdit)="onCancelEdit(edge.node)"
+
+[enableEdit]="(admin | async)"
+[enableDelete]="(admin | async)" -->

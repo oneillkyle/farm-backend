@@ -15,6 +15,7 @@ import * as farmActions from '../../shared/actions/farm';
 })
 export class SectionComponent implements OnInit {
   section: Observable<Section>;
+  admin: Observable<boolean> = Observable.of(true);
 
   constructor(
     private store: Store<AppState>,
@@ -30,5 +31,12 @@ export class SectionComponent implements OnInit {
       })
     );
   }
+
+  onPostSave(post) {}
+
+  onDeletePost(post) {}
+
+  onCancelEdit(post) {}
+
 
 }

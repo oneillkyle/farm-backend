@@ -21,6 +21,8 @@ export const SELECT_POST = '[Post] Select';
 export const SELECT_POST_COMPLETE = '[Post] Select Complete';
 export const SELECT_POST_FAIL = '[Post] Select Fail';
 
+export const SELECT_POSTS = '[Posts] Select';
+export const SELECT_POSTS_COMPLETE = '[Posts] Select Complete';
 
 export class SelectSectionsAction implements Action {
   readonly type = SELECT_SECTIONS;
@@ -112,6 +114,18 @@ export class SelectPostFailAction implements Action {
   constructor(public payload: void) { }
 }
 
+export class SelectPostsAction implements Action {
+  readonly type = SELECT_POSTS;
+
+  constructor(public payload: string) { }
+}
+
+export class SelectPostsCompleteAction implements Action {
+  readonly type = SELECT_POSTS_COMPLETE;
+
+  constructor(public payload: Post[]) { }
+}
+
 export type ClientActions
   = SelectSectionsAction
   | SelectSectionsCompleteAction
@@ -127,4 +141,6 @@ export type ClientActions
   | UpdateSectionFailAction
   | SelectPostAction
   | SelectPostCompleteAction
-  | SelectPostFailAction;
+  | SelectPostFailAction
+  | SelectPostsAction
+  | SelectPostsCompleteAction;
