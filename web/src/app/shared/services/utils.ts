@@ -1,5 +1,5 @@
 import {Headers} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import * as _ from 'lodash';
 import { environment } from '../../../../src/environments/environment';
 declare var document: any;

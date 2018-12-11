@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { select, geoPath, GeoPermissibleObjects, geoEquirectangular } from 'd3';
 import * as d3 from 'd3-geo';

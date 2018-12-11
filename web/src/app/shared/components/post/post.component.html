@@ -24,9 +24,9 @@
     <form class="post-form" *ngIf="editingPost" #postForm="ngForm">
 
       <div>
-        <mat-input-container style="width: 100%">
+        <mat-form-field style="width: 100%">
           <input matInput type="text" [(ngModel)]="post.title" placeholder="Title" name="title" width="">
-        </mat-input-container>
+        </mat-form-field>
       </div>
       <textarea matInput matTextareaAutosize matAutosizeMinRows="2" [(ngModel)]="post.description" name="postBody"></textarea>
     </form>
